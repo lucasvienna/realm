@@ -8,12 +8,12 @@ const handleParaglide: Handle = ({ event, resolve }) =>
 		event.request = request;
 
 		return resolve(event, {
-			transformPageChunk: ({ html }) => html.replace('%paraglide.lang%', locale)
+			transformPageChunk: ({ html }) => html.replace('%paraglide.lang%', locale),
 		});
 	});
 
 const handleAuth: Handle = async ({ event, resolve }) => {
-	const sessionToken = event.cookies.get(auth.sessionCookieName);
+	const sessionToken = event.cookies.get(auth.SESSION_COOKIE);
 
 	if (!sessionToken) {
 		event.locals.user = null;
@@ -21,17 +21,23 @@ const handleAuth: Handle = async ({ event, resolve }) => {
 		return resolve(event);
 	}
 
-	const { session, user } = await auth.validateSessionToken(sessionToken);
+	try {
+		const { session, player } = await auth.validateSessionToken(event, sessionToken);
 
-	if (session) {
-		auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
-	} else {
-		auth.deleteSessionTokenCookie(event);
+		event.locals.user = player;
+		event.locals.session = session;
+	} catch (_e) {
+		event.locals.user = null;
+		event.locals.session = null;
 	}
 
-	event.locals.user = user;
-	event.locals.session = session;
 	return resolve(event);
 };
 
-export const handle: Handle = sequence(handleParaglide, handleAuth);
+export const handle: Handle = async ({ event, resolve }) => {
+	if (event.url.pathname.startsWith('/api/')) {
+		return resolve(event);
+	}
+
+	return sequence(handleParaglide, handleAuth)({ event, resolve });
+};

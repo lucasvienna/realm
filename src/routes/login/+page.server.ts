@@ -13,17 +13,19 @@ export const actions: Actions = {
 		const formData = await event.request.formData();
 		const username = formData.get('username');
 		const password = formData.get('password');
+		const remember = formData.get('remember') === 'on';
 
 		const res = await event.fetch('/api/login', {
 			method: 'POST',
-			body: JSON.stringify({ username, password }),
+			body: JSON.stringify({ username, password, remember }),
 			headers: {
 				'Content-Type': 'application/json',
 			},
 		});
 		if (res.status !== 200) {
 			const body = await res.clone().json();
-			return fail(400, { message: body.message });
+			console.error('Login failed:', body);
+			return fail(400, { message: body.error || 'Invalid credentials' });
 		}
 
 		return redirect(302, '/account');
@@ -43,7 +45,7 @@ export const actions: Actions = {
 			});
 			if (res.status !== 200) {
 				const body = await res.json();
-				return fail(400, { message: body.message });
+				return fail(400, { message: body.error || 'Registration failed' });
 			}
 		} catch (e) {
 			console.error('Error during registration:', e);

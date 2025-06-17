@@ -1,6 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { requireLogin } from '$lib/server/auth';
+import { requireLogin, type Player } from '$lib/server/auth';
 
 export const load: PageServerLoad = async () => {
 	const user = requireLogin();
@@ -36,16 +36,24 @@ export const actions: Actions = {
 			return fail(400, { message: 'Invalid faction ID' });
 		}
 
-		const res = await event.fetch('/api/game/join_faction', {
+		const res = await event.fetch('/api/player/faction', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ faction_id: factionId }),
+			body: JSON.stringify({ faction: factionId }),
 		});
 		if (res.status !== 200) {
-			const body = await res.json();
-			return fail(400, { message: body.message });
+			const body = await res.text();
+			return fail(400, { message: body });
 		}
+		try {
+			const usr: Player = await res.json();
+			event.locals.user = usr;
+		} catch (error) {
+			console.error('Error parsing user data:', error);
+			event.locals.user = null;
+		}
+		return { success: true };
 	},
 };

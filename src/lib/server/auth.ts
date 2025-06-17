@@ -54,10 +54,10 @@ export async function validateSessionToken(
  * If no user is found, it redirects the client to the login page.
  * Otherwise, it returns the authenticated user.
  *
- * @returns {Player} The authenticated user.
+ * @returns The authenticated user.
  * @throws Redirects to '/login' if the user is not authenticated.
  */
-export function requireLogin() {
+export function requireLogin(): Player {
 	const { locals } = getRequestEvent();
 
 	if (!locals.user) {

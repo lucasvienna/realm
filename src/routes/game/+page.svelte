@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageServerData } from './$types';
-	import { Alert, Button, Card } from 'flowbite-svelte';
+	import { Alert, Button, Card, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import type { BuildingState } from './+page.server';
 
 	let { data }: { data: PageServerData } = $props();
@@ -10,7 +10,7 @@
 	const player = data.gameData.player;
 	const buildings = data.gameData.buildings;
 	const buildingsEntries = Object.entries(buildings);
-	console.log('Buildings Entries:', buildingsEntries);
+	console.log('Buildings Entries:', ...buildingsEntries);
 
 	function canUpgrade(building: BuildingState) {
 		return (
@@ -63,6 +63,14 @@
 >
 	Collect
 </Button>
+
+<Button>Build</Button>
+<Dropdown simple>
+	<DropdownItem>Dashboard</DropdownItem>
+	<DropdownItem>Settings</DropdownItem>
+	<DropdownItem>Earnings</DropdownItem>
+	<DropdownItem>Sign out</DropdownItem>
+</Dropdown>
 
 <h3 class="mt-6">Buildings</h3>
 <div class="container mt-2 flex flex-row justify-center gap-2">

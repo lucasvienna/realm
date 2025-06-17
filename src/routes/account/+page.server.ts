@@ -23,4 +23,29 @@ export const actions: Actions = {
 
 		return redirect(302, '/login');
 	},
+
+	join_faction: async (event) => {
+		if (!event.locals.session) {
+			return fail(401);
+		}
+		const formData = await event.request.formData();
+		const factionId = formData.get('faction');
+		console.log('Joining faction:', factionId);
+
+		if (!factionId || typeof factionId !== 'string') {
+			return fail(400, { message: 'Invalid faction ID' });
+		}
+
+		const res = await event.fetch('/api/game/join_faction', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ faction_id: factionId }),
+		});
+		if (res.status !== 200) {
+			const body = await res.json();
+			return fail(400, { message: body.message });
+		}
+	},
 };

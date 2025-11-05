@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import type { PageServerData } from './$types';
+	import { enhance } from "$app/forms";
+	import { resolve } from "$app/paths";
+	import type { PageServerData } from "./$types";
 
 	let { data }: { data: PageServerData } = $props();
 </script>
@@ -12,7 +13,7 @@
 	Faction: <span class="font-mono text-base text-green-900">{data.user.faction}</span>.
 </p>
 
-{#if data.user.faction === 'Neutral'}
+{#if data.user.faction === "Neutral"}
 	<p class="mt-2">You can join a faction by clicking the button below.</p>
 	<form class="mt-2" method="post" action="?/join_faction" use:enhance>
 		<select name="faction" class="mb-2 w-36 rounded-md border border-gray-300 p-2">
@@ -28,7 +29,7 @@
 		</button>
 	</form>
 {:else}
-	<p class="mt-2">Navigate to <a href="/game">Main Game</a>.</p>
+	<p class="mt-2">Navigate to <a href={resolve("/game")}>Main Game</a>.</p>
 {/if}
 
 <form class="mt-4" method="post" action="?/logout" use:enhance>

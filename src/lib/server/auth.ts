@@ -1,7 +1,7 @@
-import { getRequestEvent } from '$app/server';
-import { redirect, type RequestEvent } from '@sveltejs/kit';
+import { getRequestEvent } from "$app/server";
+import { redirect, type RequestEvent } from "@sveltejs/kit";
 
-export const SESSION_COOKIE = 'rsession';
+export const SESSION_COOKIE = "rsession";
 
 export interface Player {
 	id: string;
@@ -24,22 +24,22 @@ export async function validateSessionToken(
 	event: RequestEvent,
 	sessionToken: string,
 ): Promise<AuthResponse> {
-	const res = await event.fetch('/api/session', {
-		method: 'GET',
+	const res = await event.fetch("/api/session", {
+		method: "GET",
 		headers: {
-			'Content-Type': 'application/json',
+			"Content-Type": "application/json",
 		},
 	});
 	const body: AuthResponse = await res.json();
 	if (res.status !== 200) {
-		throw new Error('Session token validation failed');
+		throw new Error("Session token validation failed");
 	}
 	const { player, session } = body;
 	if (!player || !session) {
-		throw new Error('Session token validation failed');
+		throw new Error("Session token validation failed");
 	}
 	if (session.token !== sessionToken) {
-		throw new Error('Session token validation failed');
+		throw new Error("Session token validation failed");
 	}
 	return {
 		player,
@@ -61,7 +61,7 @@ export function requireLogin(): Player {
 	const { locals } = getRequestEvent();
 
 	if (!locals.user) {
-		return redirect(302, '/login');
+		return redirect(302, "/login");
 	}
 
 	return locals.user;

@@ -1,10 +1,10 @@
-import { requireLogin } from '$lib/server/auth';
-import type { PageServerLoad } from './$types';
+import { requireLogin } from "$lib/server/auth";
+import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ fetch }) => {
 	requireLogin();
 
-	const res = await fetch('/api/game');
+	const res = await fetch("/api/game");
 	if (res.status !== 200) {
 		const body = await res.json();
 		throw new Error(`Failed to load game data: ${body.error}`);

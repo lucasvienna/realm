@@ -1,15 +1,13 @@
-{
-	"useTabs": true,
-	"singleQuote": true,
-	"trailingComma": "all",
-	"printWidth": 100,
-	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
-	"overrides": [
-		{
-			"files": "*.svelte",
-			"options": {
-				"parser": "svelte"
-			}
-		}
-	]
-}
+singleQuote: false
+printWidth: 100
+useTabs: true
+tabWidth: 2
+trailingComma: all
+plugins:
+  - prettier-plugin-svelte
+  - prettier-plugin-tailwindcss
+  - "@prettier/plugin-oxc"
+overrides:
+  - files: "*.svelte"
+    options:
+      parser: svelte

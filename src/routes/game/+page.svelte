@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type { PageServerData } from './$types';
-	import { Alert, Button, Card, Dropdown, DropdownItem } from 'flowbite-svelte';
-	import type { BuildingState } from './+page.server';
+	import type { PageServerData } from "./$types";
+	import { Alert, Button, Card, Dropdown, DropdownItem } from "flowbite-svelte";
+	import type { BuildingState } from "./+page.server";
 
 	let { data }: { data: PageServerData } = $props();
-	console.log('Game Page Data:', data);
+	console.log("Game Page Data:", data);
 
 	const resources = data.gameData.resources;
 	const player = data.gameData.player;
 	const buildings = data.gameData.buildings;
 	const buildingsEntries = Object.entries(buildings);
-	console.log('Buildings Entries:', ...buildingsEntries);
+	console.log("Buildings Entries:", ...buildingsEntries);
 
 	function canUpgrade(building: BuildingState) {
 		return (
@@ -44,20 +44,20 @@
 	class="mt-4"
 	color="blue"
 	onclick={async () => {
-		const res = await fetch('/api/game/resources/collect', {
-			method: 'POST',
+		const res = await fetch("/api/game/resources/collect", {
+			method: "POST",
 			headers: {
-				'Content-Type': 'application/json',
+				"Content-Type": "application/json",
 			},
 		});
-		console.log('Collect resources response:', res);
+		console.log("Collect resources response:", res);
 		if (res.ok) {
 			const body = await res.json();
-			console.log('Collected resources:', body);
+			console.log("Collected resources:", body);
 			// Optionally, you can refresh the page or update the state
 			window.location.reload();
 		} else {
-			console.error('Failed to collect resources:', res.statusText);
+			console.error("Failed to collect resources:", res.statusText);
 		}
 	}}
 >
@@ -74,14 +74,14 @@
 
 <h3 class="mt-6">Buildings</h3>
 <div class="container mt-2 flex flex-row justify-center gap-2">
-	{#each buildingsEntries as [bldId, blds]}
+	{#each buildingsEntries as [bldId, blds] (bldId)}
 		{#if !blds || blds.length === 0}
 			<Alert color="blue">No buildings found for ID: {bldId}</Alert>
 		{:else}
 			<div>
 				<h3>Building ID: {bldId}</h3>
 				<h5>Building Count: {blds.length}/{blds[0].max_count}</h5>
-				{#each blds as bld}
+				{#each blds as bld (bld.id)}
 					<div class="flex flex-col gap-2">
 						<Card class="p-2">
 							<h5>{bld.name}</h5>
@@ -99,18 +99,18 @@
 								disabled={bld.level >= bld.max_level || !canUpgrade(bld)}
 								onclick={async () => {
 									const response = await fetch(`/api/game/buildings/${bld.id}/upgrade`, {
-										method: 'POST',
+										method: "POST",
 										headers: {
-											'Content-Type': 'application/json',
+											"Content-Type": "application/json",
 										},
 									});
 									const body = await response.json();
 									if (response.ok) {
-										console.log('Upgrade successful:', body);
+										console.log("Upgrade successful:", body);
 										// Optionally, you can refresh the page or update the state
 										window.location.reload();
 									} else {
-										console.error('Upgrade failed:', body);
+										console.error("Upgrade failed:", body);
 									}
 								}}
 							>

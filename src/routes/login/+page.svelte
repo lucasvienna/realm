@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import type { ActionData } from './$types';
-	import { Section, Register } from 'flowbite-svelte-blocks';
-	import { Button, Checkbox, Label, Input, Helper } from 'flowbite-svelte';
+	import { enhance } from "$app/forms";
+	import type { ActionData } from "./$types";
+	import { Section, Register } from "flowbite-svelte-blocks";
+	import { Button, Checkbox, Label, Input, Helper } from "flowbite-svelte";
+	import { resolve } from "$app/paths";
 
 	let { form }: { form: ActionData } = $props();
 </script>
@@ -22,11 +23,14 @@
 				<Label class="space-y-2">
 					<span>Password</span>
 					<Input type="password" name="password" autocomplete="current-password" required />
-					<Helper class="mt-2" color="red">{form?.message ?? ''}</Helper>
+					<Helper class="mt-2" color="red">{form?.message ?? ""}</Helper>
 				</Label>
 				<div class="flex items-start">
 					<Checkbox name="remember">Remember me</Checkbox>
-					<a href="/" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">
+					<a
+						href={resolve("/")}
+						class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
+					>
 						Forgot password?
 					</a>
 				</div>

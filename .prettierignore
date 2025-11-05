@@ -1,3 +1,5 @@
+# oxfmt uses this file instead of `.oxfmtignore`
+
 # Package Managers
 package-lock.json
 pnpm-lock.yaml

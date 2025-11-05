@@ -29,8 +29,8 @@
 	--color-secondary-900: #917608;
 }
 
-@source "../node_modules/flowbite-svelte/dist";
-@source "../node_modules/flowbite-svelte-icons/dist";
+@source '../node_modules/flowbite-svelte/dist';
+@source '../node_modules/flowbite-svelte-icons/dist';
 
 @layer base {
 	html,

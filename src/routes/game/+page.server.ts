@@ -1,5 +1,7 @@
 import { requireLogin } from "$lib/server/auth";
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad, Actions } from "./$types";
+import type { GameBuilding, GameData, ResourcesState } from "./game";
+import invariant from "tiny-invariant";
 
 export const load: PageServerLoad = async ({ fetch }) => {
 	requireLogin();
@@ -13,50 +15,57 @@ export const load: PageServerLoad = async ({ fetch }) => {
 	return { gameData };
 };
 
-export interface GameData {
-	player: {
-		id: string;
-		name: string;
-		faction: string;
-	};
-	resources: {
-		food: number;
-		wood: number;
-		stone: number;
-		gold: number;
-		food_cap: number;
-		wood_cap: number;
-		stone_cap: number;
-		gold_cap: number;
-		food_acc: number;
-		wood_acc: number;
-		stone_acc: number;
-		gold_acc: number;
-		food_acc_cap: number;
-		wood_acc_cap: number;
-		stone_acc_cap: number;
-		gold_acc_cap: number;
-		produced_at: string; // timestamptz
-		collected_at: string; // timestamptz
-	};
-	buildings: Record<string, BuildingState[]>;
-}
-
-export interface BuildingState {
-	id: string;
-	building_id: number;
-	name: string;
-	level: number;
-	max_level: number;
-	max_count: number;
-	upgrade_time: string;
-	req_food: number | null;
-	req_wood: number | null;
-	req_stone: number | null;
-	req_gold: number | null;
-	population_per_hour: number;
-	food_per_hour: number;
-	wood_per_hour: number;
-	stone_per_hour: number;
-	gold_per_hour: number;
-}
+export const actions: Actions = {
+	async collect(event) {
+		const res = await event.fetch("/api/game/resources/collect", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		console.log("Collect resources response:", res);
+		if (res.ok) {
+			const body: ResourcesState = await res.json();
+			console.log("Collected resources:", body);
+			return body;
+		} else {
+			console.error("Failed to collect resources:", res.statusText);
+		}
+	},
+	async upgrade({ fetch, request }) {
+		const data = await request.formData();
+		const bld_id = data.get("bld_id");
+		invariant(bld_id, "Building ID should not be null");
+		const response = await fetch(`/api/game/buildings/${bld_id}/upgrade`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const body: GameBuilding = await response.json();
+		if (response.ok) {
+			console.log("Upgrade successful:", body);
+			return body;
+		} else {
+			console.error("Upgrade failed:", body);
+		}
+	},
+	async confirm({ fetch, request }) {
+		const data = await request.formData();
+		const bld_id = data.get("bld_id");
+		invariant(bld_id, "Building ID should not be null");
+		const response = await fetch(`/api/game/buildings/${bld_id}/upgrade/confirm`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const body: GameBuilding = await response.json();
+		if (response.ok) {
+			console.log("Upgrade successful:", body);
+			return body;
+		} else {
+			console.error("Upgrade failed:", body);
+		}
+	},
+};

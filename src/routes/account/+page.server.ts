@@ -37,7 +37,7 @@ export const actions: Actions = {
 		}
 
 		const res = await event.fetch("/api/player/faction", {
-			method: "POST",
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 			},

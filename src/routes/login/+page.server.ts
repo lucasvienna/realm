@@ -25,7 +25,7 @@ export const actions: Actions = {
 		if (res.status !== 200) {
 			const body = await res.clone().json();
 			console.error("Login failed:", body);
-			return fail(400, { message: body.error || "Invalid credentials" });
+			return fail(res.status, { message: body.error || "Invalid credentials" });
 		}
 
 		return redirect(302, "/account");

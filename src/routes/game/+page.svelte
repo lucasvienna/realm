@@ -1,25 +1,33 @@
 <script lang="ts">
-	import type { PageServerData } from "./$types";
+	import type { PageProps } from "./$types";
 	import { Alert, Button, Card, Dropdown, DropdownItem } from "flowbite-svelte";
-	import type { BuildingState } from "./+page.server";
+	import type { BuildingState } from "./game";
+	import { enhance } from "$app/forms";
+	import { DateTime } from "luxon";
 
-	let { data }: { data: PageServerData } = $props();
-	console.log("Game Page Data:", data);
+	let { data }: PageProps = $props();
 
-	const resources = data.gameData.resources;
-	const player = data.gameData.player;
-	const buildings = data.gameData.buildings;
-	const buildingsEntries = Object.entries(buildings);
-	console.log("Buildings Entries:", ...buildingsEntries);
+	const resources = $derived(data.gameData.resources);
+	const player = $derived(data.gameData.player);
+	const buildingsEntries = $derived(Object.entries(data.gameData.buildings));
 
-	function canUpgrade(building: BuildingState) {
+	function canUpgrade(building: BuildingState): boolean {
 		return (
+			building.current_upgrade_time == null && // upgrade already in progress
 			building.level < building.max_level &&
 			resources.food >= (building.req_food ?? Infinity) &&
 			resources.wood >= (building.req_wood ?? Infinity) &&
 			resources.stone >= (building.req_stone ?? Infinity) &&
 			resources.gold >= (building.req_gold ?? Infinity)
 		);
+	}
+
+	function canConfirm(bld: BuildingState): boolean {
+		if (!bld.current_upgrade_time) return false;
+		const finish_time = DateTime.fromISO(bld.current_upgrade_time);
+		if (!finish_time.isValid) return false;
+
+		return DateTime.now() >= finish_time;
 	}
 </script>
 
@@ -40,29 +48,11 @@
 	<Card class="p-2">Gold Production:<br />{resources.gold_acc}/{resources.gold_acc_cap}</Card>
 </div>
 
-<Button
-	class="mt-4"
-	color="blue"
-	onclick={async () => {
-		const res = await fetch("/api/game/resources/collect", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-		console.log("Collect resources response:", res);
-		if (res.ok) {
-			const body = await res.json();
-			console.log("Collected resources:", body);
-			// Optionally, you can refresh the page or update the state
-			window.location.reload();
-		} else {
-			console.error("Failed to collect resources:", res.statusText);
-		}
-	}}
->
-	Collect
-</Button>
+<form method="POST" action="?/collect" use:enhance>
+	<Button class="mt-4" type="submit" color="blue">Collect</Button>
+</form>
+
+<br />
 
 <Button>Build</Button>
 <Dropdown simple>
@@ -83,40 +73,35 @@
 				<h5>Building Count: {blds.length}/{blds[0].max_count}</h5>
 				{#each blds as bld (bld.id)}
 					<div class="flex flex-col gap-2">
-						<Card class="p-2">
-							<h5>{bld.name}</h5>
-							<p>Level: {bld.level}/{bld.max_level}</p>
-							<p class="mt-2">Upgrade Requirements:</p>
-							<ul>
-								<li>Food: {bld.req_food}</li>
-								<li>Wood: {bld.req_wood}</li>
-								<li>Stone: {bld.req_stone}</li>
-								<li>Gold: {bld.req_gold}</li>
-							</ul>
-							<Button
-								color="green"
-								class="mt-2"
-								disabled={bld.level >= bld.max_level || !canUpgrade(bld)}
-								onclick={async () => {
-									const response = await fetch(`/api/game/buildings/${bld.id}/upgrade`, {
-										method: "POST",
-										headers: {
-											"Content-Type": "application/json",
-										},
-									});
-									const body = await response.json();
-									if (response.ok) {
-										console.log("Upgrade successful:", body);
-										// Optionally, you can refresh the page or update the state
-										window.location.reload();
-									} else {
-										console.error("Upgrade failed:", body);
-									}
-								}}
-							>
-								Upgrade
-							</Button>
-						</Card>
+						<form method="POST" action="?/upgrade" use:enhance>
+							<Card class="p-2">
+								<h5>{bld.name}</h5>
+								<p>Level: {bld.level}/{bld.max_level}</p>
+								<p class="mt-2">Upgrade Requirements:</p>
+								<ul>
+									<li>Food: {bld.req_food}</li>
+									<li>Wood: {bld.req_wood}</li>
+									<li>Stone: {bld.req_stone}</li>
+									<li>Gold: {bld.req_gold}</li>
+								</ul>
+								<input name="bld_id" value={bld.id} type="hidden" />
+								{#if bld.current_upgrade_time}
+									<Button
+										color="cyan"
+										class="mt-1"
+										type="submit"
+										formaction="?/confirm"
+										disabled={!canConfirm(bld)}
+									>
+										Confirm
+									</Button>
+								{:else}
+									<Button color="green" class="mt-2" type="submit" disabled={!canUpgrade(bld)}>
+										Upgrade
+									</Button>
+								{/if}
+							</Card>
+						</form>
 					</div>
 				{/each}
 			</div>

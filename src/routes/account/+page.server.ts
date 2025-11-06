@@ -1,6 +1,8 @@
 import { requireLogin, type Player } from "$lib/server/auth";
-import type { Actions, PageServerLoad } from "./$types";
+
 import { fail, redirect } from "@sveltejs/kit";
+
+import type { Actions, PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async () => {
 	const user = requireLogin();

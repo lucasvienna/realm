@@ -11,3 +11,6 @@ overrides:
   - files: "*.svelte"
     options:
       parser: svelte
+  - files: "*.jsonc"
+    options:
+      trailingComma: none

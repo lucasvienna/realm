@@ -9,15 +9,15 @@
 		"order": "asc",
 		"ignoreCase": true,
 		"partitionByComment": false,
-		"partitionByNewline": false,
+		"partitionByNewline": false
 	},
 	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 	"overrides": [
 		{
 			"files": "*.svelte",
 			"options": {
-				"parser": "svelte",
-			},
-		},
-	],
+				"parser": "svelte"
+			}
+		}
+	]
 }

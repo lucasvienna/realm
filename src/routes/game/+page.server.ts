@@ -1,7 +1,8 @@
 import { requireLogin } from "$lib/server/auth";
+import invariant from "tiny-invariant";
+
 import type { PageServerLoad, Actions } from "./$types";
 import type { GameBuilding, GameData, ResourcesState } from "./game";
-import invariant from "tiny-invariant";
 
 export const load: PageServerLoad = async ({ fetch }) => {
 	requireLogin();

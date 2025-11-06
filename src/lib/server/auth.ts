@@ -1,4 +1,5 @@
 import { getRequestEvent } from "$app/server";
+
 import { redirect, type RequestEvent } from "@sveltejs/kit";
 
 export const SESSION_COOKIE = "rsession";

@@ -13,7 +13,7 @@
 
 	function canUpgrade(building: BuildingState): boolean {
 		return (
-			building.current_upgrade_time == null && // upgrade already in progress
+			building.upgrade_finishes_at == null && // upgrade already in progress
 			building.level < building.max_level &&
 			resources.food >= (building.req_food ?? Infinity) &&
 			resources.wood >= (building.req_wood ?? Infinity) &&
@@ -23,8 +23,8 @@
 	}
 
 	function canConfirm(bld: BuildingState): boolean {
-		if (!bld.current_upgrade_time) return false;
-		const finish_time = DateTime.fromISO(bld.current_upgrade_time);
+		if (!bld.upgrade_finishes_at) return false;
+		const finish_time = DateTime.fromISO(bld.upgrade_finishes_at);
 		if (!finish_time.isValid) return false;
 
 		return DateTime.now() >= finish_time;
@@ -85,7 +85,7 @@
 									<li>Gold: {bld.req_gold}</li>
 								</ul>
 								<input name="bld_id" value={bld.id} type="hidden" />
-								{#if bld.current_upgrade_time}
+								{#if bld.upgrade_finishes_at}
 									<Button
 										color="cyan"
 										class="mt-1"

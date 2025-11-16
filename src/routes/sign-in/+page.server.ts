@@ -10,7 +10,7 @@ export const load: PageServerLoad = async (event) => {
 };
 
 export const actions: Actions = {
-	login: async (event) => {
+	default: async (event) => {
 		const formData = await event.request.formData();
 		const username = formData.get("username");
 		const password = formData.get("password");
@@ -29,29 +29,6 @@ export const actions: Actions = {
 			return fail(res.status, { message: body.error || "Invalid credentials" });
 		}
 
-		return redirect(302, "/account");
-	},
-	register: async (event) => {
-		const formData = await event.request.formData();
-		const username = formData.get("username");
-		const password = formData.get("password");
-
-		try {
-			const res = await event.fetch("/api/register", {
-				method: "POST",
-				body: JSON.stringify({ username, password }),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			if (res.status !== 200) {
-				const body = await res.json();
-				return fail(400, { message: body.error || "Registration failed" });
-			}
-		} catch (e) {
-			console.error("Error during registration:", e);
-			return fail(500, { message: "An error has occurred" });
-		}
 		return redirect(302, "/account");
 	},
 };

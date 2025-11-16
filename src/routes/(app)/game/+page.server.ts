@@ -24,10 +24,9 @@ export const actions: Actions = {
 				"Content-Type": "application/json",
 			},
 		});
-		console.log("Collect resources response:", res);
+		console.log("Collect resources response:", res.status, res.statusText);
 		if (res.ok) {
 			const body: ResourcesState = await res.json();
-			console.log("Collected resources:", body);
 			return body;
 		} else {
 			console.error("Failed to collect resources:", res.statusText);
@@ -45,7 +44,6 @@ export const actions: Actions = {
 		});
 		const body: GameBuilding = await response.json();
 		if (response.ok) {
-			console.log("Upgrade successful:", body);
 			return body;
 		} else {
 			console.error("Upgrade failed:", body);
@@ -63,7 +61,6 @@ export const actions: Actions = {
 		});
 		const body: GameBuilding = await response.json();
 		if (response.ok) {
-			console.log("Upgrade successful:", body);
 			return body;
 		} else {
 			console.error("Upgrade failed:", body);

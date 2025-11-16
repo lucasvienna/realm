@@ -52,17 +52,17 @@ export async function validateSessionToken(
  * Ensures that a user is logged in before proceeding.
  *
  * This function retrieves the current request event and checks if a user is present in `locals`.
- * If no user is found, it redirects the client to the login page.
+ * If no user is found, it redirects the client to the sign-in page.
  * Otherwise, it returns the authenticated user.
  *
  * @returns The authenticated user.
- * @throws Redirects to '/login' if the user is not authenticated.
+ * @throws Redirects to '/sign-in' if the user is not authenticated.
  */
 export function requireLogin(): Player {
 	const { locals } = getRequestEvent();
 
 	if (!locals.user) {
-		return redirect(302, "/login");
+		return redirect(302, "/sign-in");
 	}
 
 	return locals.user;

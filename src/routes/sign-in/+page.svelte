@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
-	import type { PageProps } from "./$types";
-	import { Section, Register } from "flowbite-svelte-blocks";
-	import { Button, Checkbox, Label, Input, Helper } from "flowbite-svelte";
 	import { resolve } from "$app/paths";
+	import { Button, Checkbox, Helper, Input, Label } from "flowbite-svelte";
+	import { Register, Section } from "flowbite-svelte-blocks";
+	import type { PageProps } from "./$types";
 
 	let { form }: PageProps = $props();
 </script>
@@ -12,9 +12,13 @@
 	name="login"
 	class="flex min-h-screen w-full content-center items-center bg-gray-50 dark:bg-gray-900"
 >
-	<Register class="w-full max-w-md">
+	<Register href={resolve("/")} class="w-full max-w-md">
+		{#snippet top()}
+			<img class="mr-2 h-8 w-8" src="/images/logo.svg" alt="logo" />
+			Empire
+		{/snippet}
 		<div class="min-w-86 space-y-4 p-6 sm:p-8 md:space-y-6">
-			<form class="flex flex-col space-y-6" method="post" action="?/login" use:enhance>
+			<form class="flex flex-col space-y-6" method="POST" use:enhance>
 				<h3 class="p-0 text-xl font-medium text-gray-900 dark:text-white">Login</h3>
 				<Label class="space-y-2">
 					<span>Username</span>
@@ -37,7 +41,12 @@
 					</a>
 				</div>
 				<Button type="submit" class="w-full1">Sign in</Button>
-				<Button type="submit" formaction="?/register" class="w-full1">Register</Button>
+				<p class="text-sm font-light text-gray-500 dark:text-gray-400">
+					Don’t have an account yet? <a
+						href={resolve("/sign-up")}
+						class="text-primary-600 dark:text-primary-500 font-medium hover:underline">Sign up</a
+					>
+				</p>
 			</form>
 		</div>
 	</Register>

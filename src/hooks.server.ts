@@ -37,7 +37,8 @@ const handleAuth: Handle = async ({ event, resolve }) => {
 };
 
 export const handle: Handle = async ({ event, resolve }) => {
-	if (event.url.pathname.startsWith("/api/")) {
+	// Prevents infinite recursion when auth validation calls /api/session
+	if (event.url.pathname.startsWith("/api")) {
 		return resolve(event);
 	}
 

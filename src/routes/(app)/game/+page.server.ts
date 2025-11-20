@@ -34,8 +34,8 @@ export const actions: Actions = {
 	},
 	async upgrade({ fetch, request }) {
 		const data = await request.formData();
-		const bld_id = data.get("bld_id");
-		invariant(bld_id, "Building ID should not be null");
+		const bld_id = data.get("bld_id")?.valueOf();
+		invariant(bld_id && typeof bld_id === "string", "Building ID should not be null");
 		const response = await fetch(`/api/game/buildings/${bld_id}/upgrade`, {
 			method: "POST",
 			headers: {
@@ -51,8 +51,8 @@ export const actions: Actions = {
 	},
 	async confirm({ fetch, request }) {
 		const data = await request.formData();
-		const bld_id = data.get("bld_id");
-		invariant(bld_id, "Building ID should not be null");
+		const bld_id = data.get("bld_id")?.valueOf();
+		invariant(bld_id && typeof bld_id === "string", "Building ID should not be null");
 		const response = await fetch(`/api/game/buildings/${bld_id}/upgrade/confirm`, {
 			method: "POST",
 			headers: {

@@ -51,5 +51,5 @@ export default defineConfig(
 			},
 		},
 	},
-	...oxlint.configs["flat/recommended"],
+	...oxlint.buildFromOxlintConfigFile("./.oxlintrc.json"),
 );

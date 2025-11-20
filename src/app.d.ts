@@ -8,4 +8,5 @@ declare global {
 	}
 }
 
+// oxlint-disable-next-line require-module-specifiers -- required for module augmentation to work
 export {};

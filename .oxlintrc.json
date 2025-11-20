@@ -2,7 +2,9 @@
 	"$schema": "./node_modules/oxlint/configuration_schema.json",
 	"plugins": ["oxc", "node", "typescript", "unicorn", "import", "promise", "vitest"],
 	"categories": {
-		"correctness": "off"
+		"correctness": "error",
+		"perf": "error",
+		"suspicious": "error"
 	},
 	"env": {
 		"builtin": true,
@@ -46,6 +48,7 @@
 		"@typescript-eslint/prefer-as-const": "error",
 		"@typescript-eslint/prefer-namespace-keyword": "error",
 		"@typescript-eslint/triple-slash-reference": "error",
+		"import/no-unassigned-import": ["error", { "allow": ["**/*.css", "@testing-library/**"] }],
 		"oxc/bad-array-method-on-arguments": "warn",
 		"oxc/bad-char-at-comparison": "warn",
 		"oxc/bad-comparison-sequence": "warn",
@@ -57,8 +60,11 @@
 		"oxc/erasing-op": "warn",
 		"oxc/missing-throw": "warn",
 		"oxc/number-arg-out-of-range": "warn",
+		"oxc/no-barrel-file": "warn",
+		"oxc/no-const-enum": "warn",
 		"oxc/only-used-in-recursion": "warn",
 		"oxc/uninvoked-array-callback": "warn",
+		"eqeqeq": ["error", "smart"],
 		"for-direction": "error",
 		"no-array-constructor": "error",
 		"no-async-promise-executor": "error",

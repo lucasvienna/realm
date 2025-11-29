@@ -28,9 +28,8 @@ export const actions: Actions = {
 		if (res.ok) {
 			const body: ResourcesState = await res.json();
 			return body;
-		} else {
-			console.error("Failed to collect resources:", res.statusText);
 		}
+		console.error("Failed to collect resources:", res.statusText);
 	},
 	async upgrade({ fetch, request }) {
 		const data = await request.formData();
@@ -45,9 +44,8 @@ export const actions: Actions = {
 		const body: GameBuilding = await response.json();
 		if (response.ok) {
 			return body;
-		} else {
-			console.error("Upgrade failed:", body);
 		}
+		console.error("Upgrade failed:", body);
 	},
 	async confirm({ fetch, request }) {
 		const data = await request.formData();
@@ -62,8 +60,7 @@ export const actions: Actions = {
 		const body: GameBuilding = await response.json();
 		if (response.ok) {
 			return body;
-		} else {
-			console.error("Upgrade failed:", body);
 		}
+		console.error("Upgrade failed:", body);
 	},
 };

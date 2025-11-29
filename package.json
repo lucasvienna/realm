@@ -15,10 +15,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write --list-different .",
-		"fmt": "oxfmt --list-different",
+		"fmt": "oxfmt",
 		"lint": "oxlint --type-aware --fix --fix-suggestions && eslint .",
-		"lint:ci": "prettier --check . && oxfmt --check && oxlint --type-aware && eslint .",
-		"test": "vitest"
+		"lint:ci": "prettier --check . && oxfmt --check && oxlint --type-aware && eslint ."
 	},
 	"dependencies": {
 		"@inlang/paraglide-js": "^2.5.0",

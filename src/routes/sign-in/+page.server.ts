@@ -16,7 +16,6 @@ export const actions: Actions = {
 		const password = formData.get("password");
 		const remember = formData.get("remember") === "on";
 
-		await new Promise((fulfil) => setTimeout(fulfil, 2000));
 		const res = await event.fetch("/api/login", {
 			method: "POST",
 			body: JSON.stringify({ username, password, remember }),

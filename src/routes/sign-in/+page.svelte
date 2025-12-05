@@ -15,6 +15,7 @@
 	import type { PageProps } from "./$types";
 	import { Checkbox } from "$lib/components/ui/checkbox";
 	import * as Alert from "$lib/components/ui/alert";
+	import { Spinner } from "$lib/components/ui/spinner";
 
 	let { form }: PageProps = $props();
 
@@ -72,16 +73,14 @@
 					</div>
 					<Input id="password" name="password" type="password" required />
 				</Field>
-				<Field>
-					<div class="flex items-center gap-3">
-						<div class="grow"></div>
-						<Checkbox
-							id="remember"
-							name="remember"
-							value={(form?.remember === true && "on") || "off"}
-						/>
-						<FieldLabel for="remember">Remember me?</FieldLabel>
-					</div>
+				<Field orientation="horizontal">
+					<div class="grow"></div>
+					<Checkbox
+						id="remember"
+						name="remember"
+						checked={(form?.remember === true && true) || false}
+					/>
+					<FieldLabel for="remember" class="grow-0!">Remember me?</FieldLabel>
 				</Field>
 				{#if form?.message != null && !submitting}
 					<Alert.Root variant="destructive">
@@ -91,9 +90,12 @@
 					</Alert.Root>
 				{/if}
 				<Field>
-					<Button type="submit" disabled={submitting}
-						>{submitting ? "Submitting..." : "Sign in"}</Button
-					>
+					<Button type="submit" disabled={submitting}>
+						{#if submitting}
+							<Spinner />
+						{/if}
+						{submitting ? "Submitting..." : "Sign in"}
+					</Button>
 				</Field>
 				<FieldSeparator>Or</FieldSeparator>
 				<Field class="grid gap-4 sm:grid-cols-2">

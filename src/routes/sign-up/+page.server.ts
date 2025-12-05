@@ -19,15 +19,15 @@ export const actions: Actions = {
 		const termsAccepted = formData.get("terms") === "on";
 
 		if (!email) {
-			return fail(400, { email, missing: true });
+			return fail(400, { username, email, missing: true });
 		}
 
 		if (password !== passwordConfirm) {
-			return fail(400, { incorrect: true });
+			return fail(400, { username, email, termsAccepted, mismatch: true });
 		}
 
 		if (!termsAccepted) {
-			return fail(400, { disagreed: true });
+			return fail(400, { username, email, disagreed: true });
 		}
 
 		try {
@@ -42,11 +42,11 @@ export const actions: Actions = {
 				const body = await res.json().catch(() => ({
 					error: "Registration failed",
 				}));
-				return fail(400, { message: body.error });
+				return fail(400, { message: body.error, username, email, termsAccepted });
 			}
 		} catch (e) {
 			console.error("Error during registration:", e);
-			return fail(500, { message: "An error has occurred" });
+			return fail(500, { message: "An error has occurred", username, email, termsAccepted });
 		}
 		return redirect(302, "/account");
 	},

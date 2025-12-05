@@ -27,8 +27,8 @@
 <!--
 @component
 ## Props
-@props title: Snippet;
-@props paragraph: Snippet;
-@props titleClass: any;
-@props paragraphClass: any;
+@props {Snippet} title
+@props {Snippet} paragraph
+@props {string?} titleClass
+@props {string?} paragraphClass
 -->

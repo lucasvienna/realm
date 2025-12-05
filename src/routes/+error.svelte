@@ -2,11 +2,11 @@
 	import { page } from "$app/state";
 	import { resolve } from "$app/paths";
 	import { Button } from "$lib/components/ui/button";
-	import Page404 from "$lib/components/page-404.svelte";
+	import ErrorPage from "$lib/components/error-page.svelte";
 </script>
 
 <main>
-	<Page404>
+	<ErrorPage>
 		{#snippet title()}
 			{page.status}
 		{/snippet}
@@ -21,5 +21,5 @@
 			</p>
 			<Button href={resolve("/")} size="lg" color="red">Back to Homepage</Button>
 		{/snippet}
-	</Page404>
+	</ErrorPage>
 </main>

@@ -197,7 +197,7 @@ user confirmation and NEVER if code was written to files in their project.
 
 ## Important Notes
 
-- Use **Flowbite** and **Flowbite Svelte** for UI components (see `AGENTS.md:5`)
+- Use **shacn/svelte** for UI components (see `AGENTS.md:5`)
   - <https://raw.githubusercontent.com/themesberg/flowbite/refs/heads/main/llms.txt>
 - Node.js version: >=24.9.0 (specified in `package.json:7`)
 - Tool versions managed by `mise.toml`

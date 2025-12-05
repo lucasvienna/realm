@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
-	import { Button } from "flowbite-svelte";
-	import { ArrowRightOutline } from "flowbite-svelte-icons";
+	import { Button } from "$lib/components/ui/button";
+
+	import ArrowRightOutline from "@lucide/svelte/icons/arrow-right";
 </script>
 
-<section class="bg-white dark:bg-gray-900">
+<section class="grow bg-white dark:bg-gray-900">
 	<div class="mx-auto max-w-7xl px-4 py-8 text-center lg:py-16">
 		<h1
 			class="mb-4 text-4xl leading-none font-extrabold tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"

@@ -7,6 +7,7 @@ plugins:
   - prettier-plugin-svelte
   - prettier-plugin-tailwindcss
   - "@prettier/plugin-oxc"
+tailwindStylesheet: "./src/routes/layout.css"
 overrides:
   - files: "*.svelte"
     options:

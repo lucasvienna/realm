@@ -16,6 +16,7 @@ export const actions: Actions = {
 		const password = formData.get("password");
 		const remember = formData.get("remember") === "on";
 
+		await new Promise((fulfil) => setTimeout(fulfil, 2000));
 		const res = await event.fetch("/api/login", {
 			method: "POST",
 			body: JSON.stringify({ username, password, remember }),
@@ -25,8 +26,8 @@ export const actions: Actions = {
 		});
 		if (res.status !== 200) {
 			const body = await res.clone().json();
-			console.error("Login failed:", body);
-			return fail(res.status, { message: body.error || "Invalid credentials" });
+			console.warn("Login failed:", body);
+			return fail(res.status, { message: body.error || "Invalid credentials", username, remember });
 		}
 
 		return redirect(302, "/account");

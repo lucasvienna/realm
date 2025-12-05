@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
 	import { resolve } from "$app/paths";
-	import { Button, Checkbox, Input, Label } from "flowbite-svelte";
-	import { Register, Section } from "flowbite-svelte-blocks";
 
 	const { form } = $props();
 </script>

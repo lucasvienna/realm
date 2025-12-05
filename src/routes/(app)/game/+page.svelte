@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageProps } from "./$types";
-	import { Alert, Button, Card, Dropdown, DropdownItem } from "flowbite-svelte";
 	import type { BuildingState } from "./game";
 	import { enhance } from "$app/forms";
 	import { DateTime } from "luxon";

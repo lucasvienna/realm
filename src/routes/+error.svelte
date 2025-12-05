@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Section, Page404 } from "flowbite-svelte-blocks";
-	import { Button } from "flowbite-svelte";
 	import { page } from "$app/state";
 	import { resolve } from "$app/paths";
+	import { Button } from "$lib/components/ui/button";
+	import Page404 from "$lib/components/page-404.svelte";
 </script>
 
-<Section name="page404">
+<main>
 	<Page404>
-		{#snippet h1()}
+		{#snippet title()}
 			{page.status}
 		{/snippet}
 		{#snippet paragraph()}
@@ -22,4 +22,4 @@
 			<Button href={resolve("/")} size="lg" color="red">Back to Homepage</Button>
 		{/snippet}
 	</Page404>
-</Section>
+</main>

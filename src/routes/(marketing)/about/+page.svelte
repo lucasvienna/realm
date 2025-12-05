@@ -1,19 +1,16 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
-	import { Button } from "flowbite-svelte";
-	import { Section } from "flowbite-svelte-blocks";
-	import {
-		AwardSolid,
-		ChartMixedOutline,
-		GlobeSolid,
-		LandmarkSolid,
-		ShieldCheckSolid,
-		UsersGroupSolid,
-	} from "flowbite-svelte-icons";
+	import { Button } from "$lib/components/ui/button";
+	import Award from "@lucide/svelte/icons/award";
+	import Globe from "@lucide/svelte/icons/globe";
+	import Landmark from "@lucide/svelte/icons/landmark";
+	import Users from "@lucide/svelte/icons/users";
+	import ShieldCheck from "@lucide/svelte/icons/shield-check";
+	import VectorSquare from "@lucide/svelte/icons/vector-square";
 </script>
 
 <!-- Content Section -->
-<Section name="content">
+<section>
 	<div class="mx-auto max-w-7xl px-4 py-8 sm:py-16 lg:px-6">
 		<div class="mb-8 max-w-3xl lg:mb-16">
 			<h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
@@ -47,10 +44,10 @@
 			<Button href={resolve("/sign-up")} size="lg" color="red">Start Your Empire</Button>
 		</div>
 	</div>
-</Section>
+</section>
 
 <!-- Features Section -->
-<Section name="feature" class="bg-gray-50 dark:bg-gray-800">
+<section class="bg-gray-50 dark:bg-gray-800">
 	<div class="mx-auto max-w-7xl px-4 py-8 sm:py-16 lg:px-6">
 		<div class="mb-8 max-w-3xl lg:mb-16">
 			<h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
@@ -65,7 +62,7 @@
 				<div
 					class="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12"
 				>
-					<LandmarkSolid class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
+					<Landmark class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
 				</div>
 				<h3 class="mb-2 text-xl font-bold dark:text-white">Resource Management</h3>
 				<p class="text-gray-500 dark:text-gray-400">
@@ -77,7 +74,7 @@
 				<div
 					class="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12"
 				>
-					<UsersGroupSolid class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
+					<Users class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
 				</div>
 				<h3 class="mb-2 text-xl font-bold dark:text-white">Alliances</h3>
 				<p class="text-gray-500 dark:text-gray-400">
@@ -89,7 +86,7 @@
 				<div
 					class="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12"
 				>
-					<AwardSolid class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
+					<Award class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
 				</div>
 				<h3 class="mb-2 text-xl font-bold dark:text-white">Competitive Rankings</h3>
 				<p class="text-gray-500 dark:text-gray-400">
@@ -101,7 +98,7 @@
 				<div
 					class="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12"
 				>
-					<ChartMixedOutline class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
+					<VectorSquare class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
 				</div>
 				<h3 class="mb-2 text-xl font-bold dark:text-white">Technology Tree</h3>
 				<p class="text-gray-500 dark:text-gray-400">
@@ -113,7 +110,7 @@
 				<div
 					class="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12"
 				>
-					<ShieldCheckSolid class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
+					<ShieldCheck class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
 				</div>
 				<h3 class="mb-2 text-xl font-bold dark:text-white">Defense Systems</h3>
 				<p class="text-gray-500 dark:text-gray-400">
@@ -125,7 +122,7 @@
 				<div
 					class="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12"
 				>
-					<GlobeSolid class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
+					<Globe class="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6" />
 				</div>
 				<h3 class="mb-2 text-xl font-bold dark:text-white">Vast World</h3>
 				<p class="text-gray-500 dark:text-gray-400">
@@ -135,4 +132,4 @@
 			</div>
 		</div>
 	</div>
-</Section>
+</section>

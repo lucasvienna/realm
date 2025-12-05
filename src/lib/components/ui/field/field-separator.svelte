@@ -1,3 +1,10 @@
+<!--
+@component
+Horizontal separator between fields. Optionally shows text content.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { Separator } from "$lib/components/ui/separator";
 	import { cn, type WithElementRef } from "$lib/utils.js";

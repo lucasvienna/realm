@@ -1,3 +1,11 @@
+<!--
+@component
+Displays validation error messages. Accepts children or an errors array.
+
+@prop {Array<{message?: string}>} errors - Array of error objects to display
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";

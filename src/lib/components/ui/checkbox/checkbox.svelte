@@ -1,3 +1,18 @@
+<!--
+@component
+A checkbox input with support for checked, unchecked, and indeterminate states.
+
+@example
+```svelte
+<Checkbox bind:checked={accepted} />
+<Checkbox bind:indeterminate={partial} />
+```
+
+@prop {boolean} checked - Bindable checked state
+@prop {boolean} indeterminate - Bindable indeterminate state (shows minus icon)
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { Checkbox as CheckboxPrimitive } from "bits-ui";
 	import CheckIcon from "@lucide/svelte/icons/check";

@@ -1,3 +1,10 @@
+<!--
+@component
+Footer area for dialog actions/buttons. Use inside `DialogContent`.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";

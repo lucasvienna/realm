@@ -1,3 +1,23 @@
+<!--
+@component
+Empty state container for when there's no data to display.
+
+@example
+```svelte
+<Empty>
+  <EmptyMedia variant="icon"><InboxIcon /></EmptyMedia>
+  <EmptyContent>
+    <EmptyHeader>
+      <EmptyTitle>No messages</EmptyTitle>
+      <EmptyDescription>Your inbox is empty.</EmptyDescription>
+    </EmptyHeader>
+  </EmptyContent>
+</Empty>
+```
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";

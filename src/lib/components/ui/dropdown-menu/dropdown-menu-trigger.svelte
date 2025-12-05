@@ -1,3 +1,9 @@
+<!--
+@component
+Button that toggles the dropdown menu. Use inside `DropdownMenu`.
+
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 

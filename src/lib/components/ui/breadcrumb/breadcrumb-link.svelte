@@ -1,3 +1,12 @@
+<!--
+@component
+Clickable link for navigable breadcrumb items. Use inside `BreadcrumbItem`.
+
+@prop {string} href - Link destination URL
+@prop {Snippet} child - Custom render snippet receiving `{ props }` for full control
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import type { HTMLAnchorAttributes } from "svelte/elements";
 	import type { Snippet } from "svelte";

@@ -1,3 +1,7 @@
+<!--
+@component
+Portals dialog content to document body. Used internally by `DialogContent`.
+-->
 <script lang="ts">
 	import { Dialog as DialogPrimitive } from "bits-ui";
 

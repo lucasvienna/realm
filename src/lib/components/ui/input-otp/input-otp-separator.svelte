@@ -1,3 +1,9 @@
+<!--
+@component
+Visual separator between OTP groups. Defaults to dot icon.
+
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { WithElementRef } from "$lib/utils.js";

@@ -1,3 +1,12 @@
+<!--
+@component
+Dropdown menu for selecting theme: Light, Dark, or System preference.
+
+@example
+```svelte
+<ThemeToggleDropdown />
+```
+-->
 <script lang="ts">
 	import MoonIcon from "@lucide/svelte/icons/moon";
 	import SunIcon from "@lucide/svelte/icons/sun";

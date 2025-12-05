@@ -1,3 +1,9 @@
+<!--
+@component
+Button that opens the dialog. Use inside `Dialog`.
+
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { Dialog as DialogPrimitive } from "bits-ui";
 

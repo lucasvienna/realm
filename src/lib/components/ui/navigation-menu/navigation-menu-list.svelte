@@ -1,3 +1,10 @@
+<!--
+@component
+Container list for navigation menu items. Use inside `NavigationMenu`.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";

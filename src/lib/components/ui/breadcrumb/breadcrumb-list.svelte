@@ -1,3 +1,10 @@
+<!--
+@component
+Ordered list container for breadcrumb items. Use inside `Breadcrumb`.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import type { HTMLOlAttributes } from "svelte/elements";
 	import { cn, type WithElementRef } from "$lib/utils.js";

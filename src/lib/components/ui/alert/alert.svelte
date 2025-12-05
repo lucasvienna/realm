@@ -1,3 +1,19 @@
+<!--
+@component
+Displays a callout for important messages.
+
+@example
+```svelte
+<Alert variant="destructive">
+  <AlertTitle>Error</AlertTitle>
+  <AlertDescription>Your session has expired.</AlertDescription>
+</Alert>
+```
+
+@prop {AlertVariant} variant - Visual style: "default" | "destructive"
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts" module>
 	import { type VariantProps, tv } from "tailwind-variants";
 

@@ -1,3 +1,11 @@
+<!--
+@component
+Individual character slot in an OTP input. Use inside `InputOTPGroup`.
+
+@prop {object} cell - Cell state object from InputOTP
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { PinInput as InputOTPPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";

@@ -1,3 +1,12 @@
+<!--
+@component
+The dialog panel with overlay and optional close button. Use inside `Dialog`.
+
+@prop {boolean} showCloseButton - Show X button in top-right (default: true)
+@prop {object} portalProps - Props passed to the underlying portal
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { Dialog as DialogPrimitive } from "bits-ui";
 	import DialogPortal from "./dialog-portal.svelte";

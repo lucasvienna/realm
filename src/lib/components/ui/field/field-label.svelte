@@ -1,3 +1,11 @@
+<!--
+@component
+Label for a form field. Associates with the input via `for` attribute.
+
+@prop {string} for - ID of the associated input element
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { Label } from "$lib/components/ui/label";
 	import { cn } from "$lib/utils.js";

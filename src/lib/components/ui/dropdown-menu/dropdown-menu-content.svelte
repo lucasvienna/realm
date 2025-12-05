@@ -1,3 +1,12 @@
+<!--
+@component
+Container for dropdown menu items. Portals and positions the menu.
+
+@prop {number} sideOffset - Distance from trigger (default: 4)
+@prop {object} portalProps - Props passed to the underlying portal
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import DropdownMenuPortal from "./dropdown-menu-portal.svelte";

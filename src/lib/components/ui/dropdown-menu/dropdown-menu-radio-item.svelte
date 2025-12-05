@@ -1,3 +1,11 @@
+<!--
+@component
+Selectable radio menu item. Use inside `DropdownMenuRadioGroup`.
+
+@prop {string} value - Value when selected
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import CircleIcon from "@lucide/svelte/icons/circle";

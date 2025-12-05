@@ -1,3 +1,12 @@
+<!--
+@component
+Interactive menu item. Use inside `DropdownMenuContent`.
+
+@prop {boolean} inset - Add left padding to align with checkbox/radio items
+@prop {"default" | "destructive"} variant - Visual style (default: "default")
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";

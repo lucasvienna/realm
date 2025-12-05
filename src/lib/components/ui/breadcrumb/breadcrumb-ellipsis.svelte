@@ -1,3 +1,10 @@
+<!--
+@component
+Ellipsis indicator for collapsed breadcrumb items. Use inside `BreadcrumbItem`.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import type { HTMLAttributes } from "svelte/elements";

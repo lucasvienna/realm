@@ -1,3 +1,12 @@
+<!--
+@component
+Navigational link within the menu. Use inside `NavigationMenuContent` or `NavigationMenuItem`.
+
+@prop {string} href - Link destination URL
+@prop {boolean} active - Whether this link is currently active
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";

@@ -1,3 +1,10 @@
+<!--
+@component
+Helper text describing the field. Use inside `Field` or `FieldContent`.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";

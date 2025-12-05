@@ -1,3 +1,10 @@
+<!--
+@component
+Accessible description for the sheet. Use inside `SheetHeader`.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { Dialog as SheetPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";

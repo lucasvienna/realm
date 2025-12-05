@@ -1,3 +1,21 @@
+<!--
+@component
+One-time password/PIN code input with individual character slots.
+
+@example
+```svelte
+<InputOTP maxlength={6} bind:value={code}>
+  <InputOTPGroup>
+    <InputOTPSlot {cell} />
+  </InputOTPGroup>
+</InputOTP>
+```
+
+@prop {string} value - Bindable input value
+@prop {number} maxlength - Maximum number of characters
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { PinInput as InputOTPPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";

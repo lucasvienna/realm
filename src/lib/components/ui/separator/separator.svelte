@@ -1,3 +1,17 @@
+<!--
+@component
+Visual divider between content sections.
+
+@example
+```svelte
+<Separator />
+<Separator orientation="vertical" />
+```
+
+@prop {"horizontal" | "vertical"} orientation - Separator direction (default: "horizontal")
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { Separator as SeparatorPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";

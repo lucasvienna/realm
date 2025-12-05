@@ -1,3 +1,7 @@
+<!--
+@component
+Portals menu content to document body. Used internally by `DropdownMenuContent`.
+-->
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 

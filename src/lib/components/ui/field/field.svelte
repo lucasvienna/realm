@@ -1,3 +1,20 @@
+<!--
+@component
+Form field wrapper that groups label, input, and helper text.
+
+@example
+```svelte
+<Field>
+  <FieldLabel>Email</FieldLabel>
+  <Input type="email" />
+  <FieldDescription>We'll never share your email.</FieldDescription>
+</Field>
+```
+
+@prop {FieldOrientation} orientation - Layout direction: "vertical" | "horizontal" | "responsive"
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts" module>
 	import { tv, type VariantProps } from "tailwind-variants";
 

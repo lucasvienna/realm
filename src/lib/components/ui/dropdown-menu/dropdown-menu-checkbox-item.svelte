@@ -1,3 +1,12 @@
+<!--
+@component
+Toggleable menu item with checkbox. Use inside `DropdownMenuCheckboxGroup` or `DropdownMenuContent`.
+
+@prop {boolean} checked - Bindable checked state
+@prop {boolean} indeterminate - Bindable indeterminate state
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import CheckIcon from "@lucide/svelte/icons/check";

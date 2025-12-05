@@ -1,3 +1,19 @@
+<!--
+@component
+Text input field supporting all standard HTML input types.
+
+@example
+```svelte
+<Input type="email" placeholder="Email" bind:value={email} />
+<Input type="file" bind:files />
+```
+
+@prop {string} type - Input type (text, email, password, file, etc.)
+@prop {string} value - Bindable input value
+@prop {FileList} files - Bindable file list (when type="file")
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import type { HTMLInputAttributes, HTMLInputTypeAttribute } from "svelte/elements";
 	import { cn, type WithElementRef } from "$lib/utils.js";

@@ -1,3 +1,12 @@
+<!--
+@component
+Simple button that toggles between light and dark modes on click.
+
+@example
+```svelte
+<ThemeToggleButton />
+```
+-->
 <script lang="ts">
 	import SunIcon from "@lucide/svelte/icons/sun";
 	import MoonIcon from "@lucide/svelte/icons/moon";

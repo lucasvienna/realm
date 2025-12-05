@@ -1,3 +1,11 @@
+<!--
+@component
+Item that opens a submenu on hover. Use inside `DropdownMenuSub`.
+
+@prop {boolean} inset - Add left padding to align with checkbox/radio items
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";

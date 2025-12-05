@@ -1,3 +1,11 @@
+<!--
+@component
+Media/icon container for empty state. Use inside `Empty`.
+
+@prop {EmptyMediaVariant} variant - Display style: "default" | "icon"
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts" module>
 	import { tv, type VariantProps } from "tailwind-variants";
 

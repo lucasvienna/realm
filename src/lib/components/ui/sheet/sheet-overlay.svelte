@@ -1,3 +1,10 @@
+<!--
+@component
+Semi-transparent backdrop behind the sheet. Used internally by `SheetContent`.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { Dialog as SheetPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";

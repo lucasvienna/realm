@@ -1,3 +1,21 @@
+<!--
+@component
+Interactive button supporting multiple variants and sizes. Renders as `<a>` when `href` is provided.
+
+@example
+```svelte
+<Button variant="destructive" size="lg">Delete</Button>
+<Button href="/dashboard">Go to Dashboard</Button>
+```
+
+@prop {ButtonVariant} variant - Visual style: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "success" | "info"
+@prop {ButtonSize} size - Button size: "default" | "sm" | "lg" | "xl" | "icon" | "icon-sm" | "icon-lg"
+@prop {string} href - When provided, renders as anchor element
+@prop {boolean} disabled - Disables the button
+@prop {string} type - Button type attribute (default: "button")
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts" module>
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";

@@ -1,3 +1,10 @@
+<!--
+@component
+Button that toggles a navigation menu dropdown. Includes chevron icon.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts" module>
 	import { cn } from "$lib/utils.js";
 	import { tv } from "tailwind-variants";

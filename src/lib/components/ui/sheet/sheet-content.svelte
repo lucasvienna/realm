@@ -1,3 +1,12 @@
+<!--
+@component
+The sheet panel that slides in from an edge. Includes close button.
+
+@prop {Side} side - Edge to slide from: "top" | "bottom" | "left" | "right" (default: "right")
+@prop {object} portalProps - Props passed to the underlying portal
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts" module>
 	import { tv, type VariantProps } from "tailwind-variants";
 	export const sheetVariants = tv({

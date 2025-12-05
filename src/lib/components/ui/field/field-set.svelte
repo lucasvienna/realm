@@ -1,3 +1,10 @@
+<!--
+@component
+Native fieldset element for grouping related inputs with a legend.
+
+@prop {string} class - Additional CSS classes
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLFieldsetAttributes } from "svelte/elements";

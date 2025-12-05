@@ -1,3 +1,9 @@
+<!--
+@component
+Groups related menu items. Use inside `DropdownMenuContent`.
+
+@prop {HTMLElement} ref - Bindable reference to the underlying element
+-->
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 

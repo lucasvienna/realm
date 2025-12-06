@@ -1,5 +1,8 @@
+import { getApi } from "$lib/server/api";
 import { requireLogin, type Player } from "$lib/server/auth";
 import { fail, redirect } from "@sveltejs/kit";
+import { HTTPError } from "ky";
+import invariant from "tiny-invariant";
 
 import type { Actions, PageServerLoad } from "./$types";
 
@@ -14,18 +17,20 @@ export const actions: Actions = {
 			return fail(401);
 		}
 
-		const res = await event.fetch("/api/logout", {
-			method: "POST",
-		});
-		if (!res.ok) {
-			const body = await res.json();
-			return fail(400, { message: body.message });
-		}
-		event.locals.user = null;
-		event.locals.session = null;
-		event.cookies.delete("rsession", { path: "/" });
-
-		return redirect(302, "/");
+		const api = getApi();
+		return api
+			.post("logout")
+			.then(() => {
+				event.locals.user = null;
+				event.locals.session = null;
+				event.cookies.delete("rsession", { path: "/" });
+				return redirect(302, "/");
+			})
+			.catch(async (e) => {
+				invariant(e instanceof HTTPError, "ky didn't return HTTPError");
+				const body = await e.response.json().catch(() => ({ message: "Logout failed" }));
+				return fail(400, { message: body.message });
+			});
 	},
 
 	join_faction: async (event) => {
@@ -39,28 +44,24 @@ export const actions: Actions = {
 			return fail(400, { message: "Invalid faction ID" });
 		}
 
-		try {
-			const res = await event.fetch("/api/player/faction", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ faction: factionId }),
-			});
-			if (!res.ok) {
-				const body = await res.text();
-				return fail(400, { success: false, message: body });
-			}
-			try {
-				const usr: Player = await res.json();
+		const api = getApi();
+		return api
+			.put("player/faction", { json: { faction: factionId } })
+			.json<Player>()
+			.then((usr) => {
 				event.locals.user = usr;
-			} catch (error) {
-				console.error("Error parsing user data:", error);
-				event.locals.user = null;
-			}
-			return { success: true };
-		} catch (error) {
-			return fail(500, { success: false, cause: error });
-		}
+				return { success: true };
+			})
+			.catch(async (e) => {
+				if (e instanceof SyntaxError) {
+					// JSON parsing failed but request succeeded
+					console.error("Error parsing user data:", e);
+					event.locals.user = null;
+					return { success: true };
+				}
+				invariant(e instanceof HTTPError, "ky didn't return HTTPError");
+				const body = await e.response.text();
+				return fail(400, { success: false, message: body });
+			});
 	},
 };

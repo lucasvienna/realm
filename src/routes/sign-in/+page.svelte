@@ -64,7 +64,7 @@
 						<Field.Label for="password">Password</Field.Label>
 						<Input id="password" name="password" type="password" required />
 					</Field.Field>
-					<Field.Field orientation="horizontal" class="mt-0">
+					<Field.Field orientation="horizontal" class="-mt-5">
 						<Checkbox
 							id="remember"
 							name="remember"

@@ -1,66 +1,66 @@
+import { getApi } from "$lib/server/api";
 import { requireLogin } from "$lib/server/auth";
+import { HTTPError } from "ky";
 import invariant from "tiny-invariant";
 
-import type { PageServerLoad, Actions } from "./$types";
+import type { Actions, PageServerLoad } from "./$types";
 import type { GameBuilding, GameData, ResourcesState } from "./game";
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async () => {
 	requireLogin();
 
-	const res = await fetch("/api/game");
-	if (res.status !== 200) {
-		const body = await res.json();
-		throw new Error(`Failed to load game data: ${body.error}`);
-	}
-	const gameData: GameData = await res.json();
-	return { gameData };
+	const api = getApi();
+	return api
+		.get("game")
+		.json<GameData>()
+		.then((gameData) => ({ gameData }))
+		.catch(async (e) => {
+			invariant(e instanceof HTTPError, "ky didn't return HTTPError");
+			const body = await e.response.json().catch(() => ({ error: "Unknown error" }));
+			throw new Error(`Failed to load game data: ${body.error}`);
+		});
 };
 
 export const actions: Actions = {
-	async collect(event) {
-		const res = await event.fetch("/api/game/resources/collect", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-		console.log("Collect resources response:", res.status, res.statusText);
-		if (res.ok) {
-			const body: ResourcesState = await res.json();
-			return body;
-		}
-		console.error("Failed to collect resources:", res.statusText);
+	collect() {
+		const api = getApi();
+		return api
+			.post("game/resources/collect")
+			.json<ResourcesState>()
+			.then((body) => {
+				console.log("Collect resources succeeded");
+				return body;
+			})
+			.catch((e) => {
+				console.error("Failed to collect resources:", e.message);
+			});
 	},
-	async upgrade({ fetch, request }) {
+
+	async upgrade({ request }) {
 		const data = await request.formData();
 		const bld_id = data.get("bld_id")?.valueOf();
 		invariant(bld_id && typeof bld_id === "string", "Building ID should not be null");
-		const response = await fetch(`/api/game/buildings/${bld_id}/upgrade`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-		const body: GameBuilding = await response.json();
-		if (response.ok) {
-			return body;
-		}
-		console.error("Upgrade failed:", body);
+
+		const api = getApi();
+		return api
+			.post(`game/buildings/${bld_id}/upgrade`)
+			.json<GameBuilding>()
+			.catch((e) => {
+				console.error("Upgrade failed:", e.message);
+			});
 	},
-	async confirm({ fetch, request }) {
+
+	async confirm({ request }) {
 		const data = await request.formData();
 		const bld_id = data.get("bld_id")?.valueOf();
 		invariant(bld_id && typeof bld_id === "string", "Building ID should not be null");
-		const response = await fetch(`/api/game/buildings/${bld_id}/upgrade/confirm`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-		const body: GameBuilding = await response.json();
-		if (response.ok) {
-			return body;
-		}
-		console.error("Upgrade failed:", body);
+
+		const api = getApi();
+		return api
+			.post(`game/buildings/${bld_id}/upgrade/confirm`)
+			.json<GameBuilding>()
+			.catch((e) => {
+				console.error("Upgrade confirmation failed:", e.message);
+			});
 	},
 };

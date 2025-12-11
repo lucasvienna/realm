@@ -8,11 +8,21 @@
 		current: number;
 		cap: number;
 		production: number;
-		productionCap: number;
+		accumulator: number;
+		accumulatorCap: number;
 		color: "amber" | "emerald" | "slate" | "yellow";
 	}
 
-	let { name, icon: Icon, current, cap, production, productionCap, color }: Props = $props();
+	let {
+		name,
+		icon: Icon,
+		current,
+		cap,
+		production,
+		accumulator,
+		accumulatorCap,
+		color,
+	}: Props = $props();
 
 	const percentage = $derived(cap > 0 ? Math.min(100, (current / cap) * 100) : 0);
 
@@ -85,6 +95,6 @@
 		<p class="text-sm text-muted-foreground">
 			<span class="font-medium text-foreground">+{production}</span> /cycle
 		</p>
-		<p class="text-xs text-muted-foreground">max {productionCap}</p>
+		<p class="text-xs text-muted-foreground">acc {accumulator}/{accumulatorCap}</p>
 	</div>
 </div>

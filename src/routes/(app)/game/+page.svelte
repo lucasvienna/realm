@@ -60,8 +60,9 @@
 						icon={Wheat}
 						current={resources.food}
 						cap={resources.food_cap}
-						production={resources.food_acc}
-						productionCap={resources.food_acc_cap}
+						production={resources.food_rate}
+						accumulator={resources.food_acc}
+						accumulatorCap={resources.food_acc_cap}
 						color="amber"
 					/>
 					<ResourceDisplay
@@ -69,8 +70,9 @@
 						icon={TreePine}
 						current={resources.wood}
 						cap={resources.wood_cap}
-						production={resources.wood_acc}
-						productionCap={resources.wood_acc_cap}
+						production={resources.wood_rate}
+						accumulator={resources.wood_acc}
+						accumulatorCap={resources.wood_acc_cap}
 						color="emerald"
 					/>
 					<ResourceDisplay
@@ -78,8 +80,9 @@
 						icon={Mountain}
 						current={resources.stone}
 						cap={resources.stone_cap}
-						production={resources.stone_acc}
-						productionCap={resources.stone_acc_cap}
+						production={resources.stone_rate}
+						accumulator={resources.stone_acc}
+						accumulatorCap={resources.stone_acc_cap}
 						color="slate"
 					/>
 					<ResourceDisplay
@@ -87,8 +90,9 @@
 						icon={Coins}
 						current={resources.gold}
 						cap={resources.gold_cap}
-						production={resources.gold_acc}
-						productionCap={resources.gold_acc_cap}
+						production={resources.gold_rate}
+						accumulator={resources.gold_acc}
+						accumulatorCap={resources.gold_acc_cap}
 						color="yellow"
 					/>
 				</div>

@@ -17,6 +17,10 @@ export interface ResourcesState {
 	wood_cap: number;
 	stone_cap: number;
 	gold_cap: number;
+	food_rate: number;
+	wood_rate: number;
+	stone_rate: number;
+	gold_rate: number;
 	food_acc: number;
 	wood_acc: number;
 	stone_acc: number;

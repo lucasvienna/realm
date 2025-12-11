@@ -1,7 +1,10 @@
 import { getRequestEvent } from "$app/server";
+import { API_PREFIX } from "$lib/constants";
 import { redirect, type RequestEvent } from "@sveltejs/kit";
+import ky from "ky";
 
 export const SESSION_COOKIE = "rsession";
+const SESSION_VALIDATION_ERROR = "Session token validation failed";
 
 export interface Player {
 	id: string;
@@ -24,27 +27,26 @@ export async function validateSessionToken(
 	event: RequestEvent,
 	sessionToken: string,
 ): Promise<AuthResponse> {
-	const res = await event.fetch("/api/session", {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
+	const api = ky.create({
+		fetch: event.fetch,
+		prefixUrl: `${event.url.origin}${API_PREFIX}`,
 	});
-	const body: AuthResponse = await res.json();
-	if (res.status !== 200) {
-		throw new Error("Session token validation failed");
-	}
+
+	const body = await api
+		.get("session")
+		.json<AuthResponse>()
+		.catch(() => {
+			throw new Error(SESSION_VALIDATION_ERROR);
+		});
+
 	const { player, session } = body;
 	if (!player || !session) {
-		throw new Error("Session token validation failed");
+		throw new Error(SESSION_VALIDATION_ERROR);
 	}
 	if (session.token !== sessionToken) {
-		throw new Error("Session token validation failed");
+		throw new Error(SESSION_VALIDATION_ERROR);
 	}
-	return {
-		player,
-		session,
-	};
+	return { player, session };
 }
 
 /**

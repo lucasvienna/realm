@@ -1,8 +1,17 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
+	import ResourceDisplay from "$lib/components/resource-display.svelte";
+	import * as Alert from "$lib/components/ui/alert";
+	import { Button } from "$lib/components/ui/button";
+	import * as Card from "$lib/components/ui/card";
+	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+	import Coins from "@lucide/svelte/icons/coins";
+	import Mountain from "@lucide/svelte/icons/mountain";
+	import TreePine from "@lucide/svelte/icons/tree-pine";
+	import Wheat from "@lucide/svelte/icons/wheat";
+	import { DateTime } from "luxon";
 	import type { PageProps } from "./$types";
 	import type { BuildingState } from "./game";
-	import { enhance } from "$app/forms";
-	import { DateTime } from "luxon";
 
 	let { data }: PageProps = $props();
 
@@ -30,80 +39,186 @@
 	}
 </script>
 
-<h2>Player: {player.name}</h2>
-<h3>Faction: {player.faction}</h3>
+<div class="min-h-svh bg-muted/40 p-4 md:p-8">
+	<div class="mx-auto max-w-4xl space-y-6">
+		<!-- Page Header -->
+		<div>
+			<h1 class="text-3xl font-bold tracking-tight">{player.name}'s Realm</h1>
+			<p class="text-muted-foreground capitalize">Faction: {player.faction}</p>
+		</div>
 
-<div class="container mt-2 flex max-w-200 flex-row gap-2">
-	<Card class="p-2">Food:<br />{resources.food}/{resources.food_cap}</Card>
-	<Card class="p-2">Wood:<br />{resources.wood}/{resources.wood_cap}</Card>
-	<Card class="p-2">Stone:<br />{resources.stone}/{resources.stone_cap}</Card>
-	<Card class="p-2">Gold:<br />{resources.gold}/{resources.gold_cap}</Card>
-</div>
+		<!-- Resources Card -->
+		<Card.Root>
+			<Card.Header>
+				<Card.Title>Resources</Card.Title>
+				<Card.Description>Your current stockpile and production</Card.Description>
+			</Card.Header>
+			<Card.Content>
+				<div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+					<ResourceDisplay
+						name="Food"
+						icon={Wheat}
+						current={resources.food}
+						cap={resources.food_cap}
+						production={resources.food_acc}
+						productionCap={resources.food_acc_cap}
+						color="amber"
+					/>
+					<ResourceDisplay
+						name="Wood"
+						icon={TreePine}
+						current={resources.wood}
+						cap={resources.wood_cap}
+						production={resources.wood_acc}
+						productionCap={resources.wood_acc_cap}
+						color="emerald"
+					/>
+					<ResourceDisplay
+						name="Stone"
+						icon={Mountain}
+						current={resources.stone}
+						cap={resources.stone_cap}
+						production={resources.stone_acc}
+						productionCap={resources.stone_acc_cap}
+						color="slate"
+					/>
+					<ResourceDisplay
+						name="Gold"
+						icon={Coins}
+						current={resources.gold}
+						cap={resources.gold_cap}
+						production={resources.gold_acc}
+						productionCap={resources.gold_acc_cap}
+						color="yellow"
+					/>
+				</div>
+			</Card.Content>
+		</Card.Root>
 
-<div class="container mt-2 flex max-w-200 flex-row gap-2">
-	<Card class="p-2">Food Production:<br />{resources.food_acc}/{resources.food_acc_cap}</Card>
-	<Card class="p-2">Wood Production:<br />{resources.wood_acc}/{resources.wood_acc_cap}</Card>
-	<Card class="p-2">Stone Production:<br />{resources.stone_acc}/{resources.stone_acc_cap}</Card>
-	<Card class="p-2">Gold Production:<br />{resources.gold_acc}/{resources.gold_acc_cap}</Card>
-</div>
+		<!-- Actions Card -->
+		<Card.Root>
+			<Card.Header>
+				<Card.Title>Actions</Card.Title>
+				<Card.Description>Manage your realm</Card.Description>
+			</Card.Header>
+			<Card.Content>
+				<div class="flex flex-wrap gap-3">
+					<form method="POST" action="?/collect" use:enhance>
+						<Button type="submit" variant="info">Collect Resources</Button>
+					</form>
+					<DropdownMenu.Root>
+						<DropdownMenu.Trigger>
+							{#snippet child({ props })}
+								<Button {...props} variant="outline">Build</Button>
+							{/snippet}
+						</DropdownMenu.Trigger>
+						<DropdownMenu.Content>
+							<DropdownMenu.Item>Dashboard</DropdownMenu.Item>
+							<DropdownMenu.Item>Settings</DropdownMenu.Item>
+							<DropdownMenu.Item>Earnings</DropdownMenu.Item>
+							<DropdownMenu.Item>Sign out</DropdownMenu.Item>
+						</DropdownMenu.Content>
+					</DropdownMenu.Root>
+				</div>
+			</Card.Content>
+		</Card.Root>
 
-<form method="POST" action="?/collect" use:enhance>
-	<Button class="mt-4" type="submit" color="blue">Collect</Button>
-</form>
-
-<br />
-
-<Button>Build</Button>
-<Dropdown simple>
-	<DropdownItem>Dashboard</DropdownItem>
-	<DropdownItem>Settings</DropdownItem>
-	<DropdownItem>Earnings</DropdownItem>
-	<DropdownItem>Sign out</DropdownItem>
-</Dropdown>
-
-<h3 class="mt-6">Buildings</h3>
-<div class="container mt-2 flex flex-row justify-center gap-2">
-	{#each buildingsEntries as [bldId, blds] (bldId)}
-		{#if !blds || blds.length === 0}
-			<Alert color="blue">No buildings found for ID: {bldId}</Alert>
-		{:else}
-			<div>
-				<h3>Building ID: {bldId}</h3>
-				<h5>Building Count: {blds.length}/{blds[0].max_count}</h5>
-				{#each blds as bld (bld.id)}
-					<div class="flex flex-col gap-2">
-						<form method="POST" action="?/upgrade" use:enhance>
-							<Card class="p-2">
-								<h5>{bld.name}</h5>
-								<p>Level: {bld.level}/{bld.max_level}</p>
-								<p class="mt-2">Upgrade Requirements:</p>
-								<ul>
-									<li>Food: {bld.req_food}</li>
-									<li>Wood: {bld.req_wood}</li>
-									<li>Stone: {bld.req_stone}</li>
-									<li>Gold: {bld.req_gold}</li>
-								</ul>
-								<input name="bld_id" value={bld.id} type="hidden" />
-								{#if bld.upgrade_finishes_at}
-									<Button
-										color="cyan"
-										class="mt-1"
-										type="submit"
-										formaction="?/confirm"
-										disabled={!canConfirm(bld)}
-									>
-										Confirm
-									</Button>
-								{:else}
-									<Button color="green" class="mt-2" type="submit" disabled={!canUpgrade(bld)}>
-										Upgrade
-									</Button>
-								{/if}
-							</Card>
-						</form>
+		<!-- Buildings Section -->
+		<Card.Root>
+			<Card.Header>
+				<Card.Title>Buildings</Card.Title>
+				<Card.Description>Upgrade your structures to grow your empire</Card.Description>
+			</Card.Header>
+			<Card.Content>
+				{#if buildingsEntries.length === 0}
+					<Alert.Root>
+						<Alert.Description>No buildings available yet.</Alert.Description>
+					</Alert.Root>
+				{:else}
+					<div
+						class="grid gap-4"
+						style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));"
+					>
+						{#each buildingsEntries as [bldId, blds] (bldId)}
+							{#if !blds || blds.length === 0}
+								<Alert.Root>
+									<Alert.Description>No buildings found for ID: {bldId}</Alert.Description>
+								</Alert.Root>
+							{:else}
+								{#each blds as bld (bld.id)}
+									<Card.Root class="flex flex-col">
+										<Card.Header class="pb-2">
+											<Card.Title class="text-lg">{bld.name}</Card.Title>
+											<Card.Description>
+												Level {bld.level} / {bld.max_level}
+											</Card.Description>
+										</Card.Header>
+										<Card.Content class="flex-1">
+											{#if bld.level < bld.max_level && !bld.upgrade_finishes_at}
+												<p class="mb-2 text-sm font-medium">Upgrade Cost:</p>
+												<div class="grid grid-cols-2 gap-2 text-sm">
+													<div class="flex justify-between">
+														<span class="text-muted-foreground">Food:</span>
+														<span class:text-destructive={resources.food < (bld.req_food ?? 0)}>
+															{bld.req_food ?? 0}
+														</span>
+													</div>
+													<div class="flex justify-between">
+														<span class="text-muted-foreground">Wood:</span>
+														<span class:text-destructive={resources.wood < (bld.req_wood ?? 0)}>
+															{bld.req_wood ?? 0}
+														</span>
+													</div>
+													<div class="flex justify-between">
+														<span class="text-muted-foreground">Stone:</span>
+														<span class:text-destructive={resources.stone < (bld.req_stone ?? 0)}>
+															{bld.req_stone ?? 0}
+														</span>
+													</div>
+													<div class="flex justify-between">
+														<span class="text-muted-foreground">Gold:</span>
+														<span class:text-destructive={resources.gold < (bld.req_gold ?? 0)}>
+															{bld.req_gold ?? 0}
+														</span>
+													</div>
+												</div>
+											{:else if bld.upgrade_finishes_at}
+												<p class="text-sm text-muted-foreground">Upgrade in progress...</p>
+											{:else}
+												<p class="text-sm text-muted-foreground">Maximum level reached</p>
+											{/if}
+										</Card.Content>
+										<Card.Footer>
+											<form method="POST" action="?/upgrade" use:enhance class="w-full">
+												<input name="bld_id" value={bld.id} type="hidden" />
+												{#if bld.upgrade_finishes_at}
+													<Button
+														class="w-full"
+														type="submit"
+														formaction="?/confirm"
+														disabled={!canConfirm(bld)}
+													>
+														Confirm Upgrade
+													</Button>
+												{:else}
+													<Button
+														variant="success"
+														class="w-full"
+														type="submit"
+														disabled={!canUpgrade(bld)}
+													>
+														Upgrade
+													</Button>
+												{/if}
+											</form>
+										</Card.Footer>
+									</Card.Root>
+								{/each}
+							{/if}
+						{/each}
 					</div>
-				{/each}
-			</div>
-		{/if}
-	{/each}
+				{/if}
+			</Card.Content>
+		</Card.Root>
+	</div>
 </div>

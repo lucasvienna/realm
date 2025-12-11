@@ -52,7 +52,7 @@
 						<p class="mb-4 text-muted-foreground">
 							You haven't joined a faction yet. Choose your allegiance!
 						</p>
-						<form method="post" action="?/join_faction" use:enhance>
+						<form method="POST" action="?/join_faction" use:enhance>
 							<select
 								name="faction"
 								class="mb-3 w-full rounded-md border border-input bg-background px-3 py-2"

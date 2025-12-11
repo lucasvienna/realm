@@ -61,7 +61,7 @@ export function requireLogin(): Player {
 	const { locals } = getRequestEvent();
 
 	if (!locals.user) {
-		return redirect(302, "/sign-in");
+		return redirect(307, "/sign-in");
 	}
 
 	return locals.user;

@@ -85,13 +85,9 @@ export const handleFetch: HandleFetch = async ({ request, fetch, event }) => {
 		const session = event.cookies.get(auth.SESSION_COOKIE);
 		if (session) headers.set("Cookie", `${auth.SESSION_COOKIE}=${session}`);
 
-		return fetch(
-			new Request(internalUrl, {
-				method: request.method,
-				headers,
-				body: request.body,
-			} satisfies RequestInit),
-		);
+		// Preserve all original request properties (method, body, duplex, signal, etc.)
+		const rewrittenRequest = new Request(internalUrl, request);
+		return fetch(new Request(rewrittenRequest, { headers }));
 	}
 
 	return fetch(request);

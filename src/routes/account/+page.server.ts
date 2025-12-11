@@ -1,6 +1,6 @@
 import { getApi } from "$lib/server/api";
 import { requireLogin, type Player } from "$lib/server/auth";
-import { fail, redirect } from "@sveltejs/kit";
+import { fail, isRedirect, redirect } from "@sveltejs/kit";
 import { HTTPError } from "ky";
 import invariant from "tiny-invariant";
 
@@ -24,9 +24,11 @@ export const actions: Actions = {
 				event.locals.user = null;
 				event.locals.session = null;
 				event.cookies.delete("rsession", { path: "/" });
-				return redirect(302, "/");
+				return redirect(303, "/");
 			})
 			.catch(async (e) => {
+				if (isRedirect(e)) throw e;
+
 				invariant(e instanceof HTTPError, "ky didn't return HTTPError");
 				const body = await e.response.json().catch(() => ({ message: "Logout failed" }));
 				return fail(400, { message: body.message });

@@ -47,8 +47,7 @@ export const actions: Actions = {
 			})
 			.catch((e: unknown) => {
 				// this can be either an HTTPError or a JSON parsing error
-				const redir = isRedirect(e);
-				if (redir) throw e;
+				if (isRedirect(e)) throw e;
 
 				if (e instanceof SyntaxError) {
 					// we failed to parse JSON, but the response was 2xx

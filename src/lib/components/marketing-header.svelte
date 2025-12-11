@@ -32,10 +32,12 @@
 		<div class="md:hidden">
 			<Sheet.Root bind:open={sheetOpen}>
 				<Sheet.Trigger>
-					<Button variant="ghost" size="icon">
-						<MenuIcon class="size-5" />
-						<span class="sr-only">Toggle menu</span>
-					</Button>
+					{#snippet child({ props })}
+						<Button {...props} variant="ghost" size="icon">
+							<MenuIcon class="size-5" />
+							<span class="sr-only">Toggle menu</span>
+						</Button>
+					{/snippet}
 				</Sheet.Trigger>
 				<Sheet.Content side="right" class="w-[300px]">
 					<Sheet.Header>

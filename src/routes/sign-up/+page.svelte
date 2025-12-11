@@ -40,6 +40,7 @@
 							name="username"
 							type="text"
 							placeholder="Emperor"
+							autocomplete="username"
 							minlength={3}
 							value={form?.username ?? ""}
 							required
@@ -52,6 +53,7 @@
 							name="email"
 							type="email"
 							placeholder="me@example.com"
+							autocomplete="email"
 							value={form?.email ?? ""}
 							required
 						/>
@@ -63,7 +65,14 @@
 						<Field.Field class="grid grid-cols-2 gap-4">
 							<Field.Field>
 								<Field.Label for="password">Password</Field.Label>
-								<Input id="password" name="password" type="password" minlength={8} required />
+								<Input
+									id="password"
+									name="password"
+									type="password"
+									autocomplete="new-password"
+									minlength={8}
+									required
+								/>
 								{#if !!form?.mismatch}
 									<Field.Error>Passwords must match.</Field.Error>
 								{/if}
@@ -74,6 +83,7 @@
 									id="confirm-password"
 									name="confirm-password"
 									type="password"
+									autocomplete="new-password"
 									minlength={8}
 									required
 									data-invalid={!!form?.missing}

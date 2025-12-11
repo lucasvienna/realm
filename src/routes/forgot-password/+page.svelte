@@ -24,7 +24,14 @@
 				<Field.Group>
 					<Field.Field>
 						<Field.Label>Email</Field.Label>
-						<Input id="email" name="email" type="email" placeholder="me@example.com" required />
+						<Input
+							id="email"
+							name="email"
+							type="email"
+							placeholder="me@example.com"
+							autocomplete="email"
+							required
+						/>
 					</Field.Field>
 					<Field.Field>
 						<Button type="submit">Send Reset Link</Button>

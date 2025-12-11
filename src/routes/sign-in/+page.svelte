@@ -57,12 +57,19 @@
 							name="username"
 							value={form?.username ?? ""}
 							placeholder="me@example.com"
+							autocomplete="username"
 							required
 						/>
 					</Field.Field>
 					<Field.Field>
 						<Field.Label for="password">Password</Field.Label>
-						<Input id="password" name="password" type="password" required />
+						<Input
+							id="password"
+							name="password"
+							type="password"
+							autocomplete="current-password"
+							required
+						/>
 					</Field.Field>
 					<Field.Field orientation="horizontal" class="-mt-5">
 						<Checkbox

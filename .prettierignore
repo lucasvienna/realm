@@ -1,5 +1,10 @@
 # oxfmt uses this file instead of `.oxfmtignore`
 
+# artifacts
+build/
+coverage/
+.svelte-kit/
+
 # Agents
 .claude/
 

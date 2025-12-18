@@ -1,5 +1,5 @@
 # Stage 1: Install dependencies
-FROM node:24-alpine AS deps
+FROM node:25-alpine AS deps
 
 RUN npm install -g pnpm
 
@@ -13,7 +13,7 @@ RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
 	pnpm install --frozen-lockfile
 
 # Stage 2: Build the application
-FROM node:24-alpine AS build
+FROM node:25-alpine AS build
 
 RUN npm install -g pnpm
 
@@ -33,7 +33,7 @@ RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
 	pnpm prune --prod
 
 # Stage 3: Production runtime
-FROM node:24-alpine AS runtime
+FROM node:25-alpine AS runtime
 
 # Create non-root user for security
 RUN addgroup --system --gid 1001 nodejs && \

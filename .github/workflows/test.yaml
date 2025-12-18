@@ -1,0 +1,49 @@
+name: Validate & Test
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: mise.toml
+          cache: pnpm
+
+      - name: install dependencies
+        run: pnpm i
+
+      - name: validate
+        run: |
+          pnpm check
+          pnpm lint:ci
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: mise.toml
+          cache: pnpm
+
+      - name: install dependencies
+        run: pnpm i
+
+      - name: validate
+        run: pnpm test run --coverage

@@ -20,10 +20,10 @@ jobs:
           node-version: lts/Krypton
           cache: pnpm
 
-      - name: install dependencies
+      - name: Install Dependencies
         run: pnpm i
 
-      - name: validate
+      - name: Validate
         run: |
           pnpm check
           pnpm lint:ci
@@ -42,8 +42,8 @@ jobs:
           node-version: lts/Krypton
           cache: pnpm
 
-      - name: install dependencies
+      - name: Install Dependencies
         run: pnpm i
 
-      - name: validate
+      - name: Test
         run: pnpm test run --coverage

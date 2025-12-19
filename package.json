@@ -13,10 +13,10 @@
 		"paraglide": "paraglide-js compile --silent --project ./project.inlang --outdir ./src/lib/paraglide",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"format": "prettier --write --list-different .",
+		"format": "prettier --write --list-different **/*.svelte",
 		"fmt": "oxfmt",
 		"lint": "oxlint --type-aware --fix --fix-suggestions && eslint --fix .",
-		"lint:ci": "prettier --check . && oxfmt --check && oxlint --type-aware && eslint ."
+		"lint:ci": "prettier --check **/*.svelte && oxfmt --check && oxlint --type-aware && eslint ."
 	},
 	"dependencies": {
 		"@inlang/paraglide-js": "2.7.0",

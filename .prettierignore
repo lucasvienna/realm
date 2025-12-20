@@ -1,8 +1,5 @@
 # oxfmt uses this file instead of `.oxfmtignore`
 
-# oxfmt handles everything except Svelte
-*.svelte
-
 # artifacts
 build/
 coverage/

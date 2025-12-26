@@ -1,8 +1,16 @@
+export enum Faction {
+	Neutral = "neutral",
+	Human = "human",
+	Ord = "orc",
+	Elf = "elf",
+	Dwarf = "dwarf",
+	Gobling = "goblin",
+}
 export interface GameData {
 	player: {
 		id: string;
 		name: string;
-		faction: string;
+		faction: Faction;
 	};
 	resources: ResourcesState;
 	buildings: Record<string, BuildingState[]>;
@@ -67,3 +75,29 @@ export interface GameBuilding {
 	req_stone: number | null;
 	req_gold: number | null;
 }
+
+export interface Building {
+	id: string;
+	name: string;
+	max_level: number;
+	max_count: number;
+	faction: Faction;
+	starter: boolean;
+	created_at: string;
+	updated_at: string;
+}
+
+export interface BuildingAvailability {
+	building: Building;
+	buildable: boolean;
+	current_count: number;
+	max_count: number;
+	max_level: number;
+	/** Enum in rust, not sure how it serialized */
+	locks: BuildingLock[];
+}
+
+export type BuildingLock =
+	| { type: "MaxCountReached" }
+	| { type: "BuildingLevelRequired"; building: number; current: number; required: number }
+	| { type: "TechNodeRequired"; node_id: string };

@@ -123,7 +123,7 @@
 					</Field.Field>
 				</Field.Group>
 			</form>
-			<Field.Description class="px-6 text-center">
+			<Field.Description class="px-6 pt-4 text-center">
 				By clicking continue, you agree to our <a href={resolve("/tos")}>Terms of Service</a> and
 				<a href={resolve("/privacy")}>Privacy Policy</a>.
 			</Field.Description>

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
+	import BuildDialog from "$lib/components/build-dialog.svelte";
 	import ResourceDisplay from "$lib/components/resource-display.svelte";
 	import * as Alert from "$lib/components/ui/alert";
 	import { Button } from "$lib/components/ui/button";
 	import * as Card from "$lib/components/ui/card";
-	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 	import Coins from "@lucide/svelte/icons/coins";
 	import Mountain from "@lucide/svelte/icons/mountain";
 	import TreePine from "@lucide/svelte/icons/tree-pine";
@@ -110,19 +110,7 @@
 					<form method="POST" action="?/collect" use:enhance>
 						<Button type="submit" variant="info">Collect Resources</Button>
 					</form>
-					<DropdownMenu.Root>
-						<DropdownMenu.Trigger>
-							{#snippet child({ props })}
-								<Button {...props} variant="outline">Build</Button>
-							{/snippet}
-						</DropdownMenu.Trigger>
-						<DropdownMenu.Content>
-							<DropdownMenu.Item>Dashboard</DropdownMenu.Item>
-							<DropdownMenu.Item>Settings</DropdownMenu.Item>
-							<DropdownMenu.Item>Earnings</DropdownMenu.Item>
-							<DropdownMenu.Item>Sign out</DropdownMenu.Item>
-						</DropdownMenu.Content>
-					</DropdownMenu.Root>
+					<BuildDialog />
 				</div>
 			</Card.Content>
 		</Card.Root>

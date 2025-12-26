@@ -22,7 +22,7 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions: Actions = {
-	collect() {
+	async collect() {
 		const api = getApi();
 		return api
 			.post("game/resources/collect")

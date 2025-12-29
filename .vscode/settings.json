@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		".prettierrc": "yaml",
+		"*.css": "tailwindcss"
+	},
+	"oxc.enable": true
+}

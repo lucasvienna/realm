@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
+	import { invalidateAll } from "$app/navigation";
+	import type { SubmitFunction } from "@sveltejs/kit";
 	import * as Dialog from "$lib/components/ui/dialog";
 	import * as Card from "$lib/components/ui/card";
 	import { Button, buttonVariants } from "$lib/components/ui/button";
@@ -11,17 +14,21 @@
 	import Mountain from "@lucide/svelte/icons/mountain";
 	import Coins from "@lucide/svelte/icons/coins";
 	import Clock from "@lucide/svelte/icons/clock";
-	import type { BuildingAvailability, BuildingLock, ConstructionInfo } from "$lib/domain/building";
+	import type { BuildingLock, ConstructionInfo } from "$lib/domain/building";
 	import type { ResourcesState } from "$lib/domain/resource";
 	import type { Component } from "svelte";
-	import { getAvailableBuildings } from "../../routes/(app)/game/data.remote";
+	import {
+		getAllBuildingDefinitions,
+		getAvailableBuildings,
+	} from "../../routes/(app)/game/data.remote";
+
+	type BuildingNameMap = Map<number, string>;
 
 	interface Props {
 		resources: ResourcesState;
-		onbuild?: (building: BuildingAvailability) => void | Promise<void>;
 	}
 
-	let { resources, onbuild }: Props = $props();
+	let { resources }: Props = $props();
 
 	function canAfford(construction: ConstructionInfo): boolean {
 		return (
@@ -46,7 +53,10 @@
 		return remainingMinutes > 0 ? `${hours}h ${remainingMinutes}m` : `${hours}h`;
 	}
 
-	function getLockInfo(lock: BuildingLock): {
+	function getLockInfo(
+		lock: BuildingLock,
+		buildingNames: BuildingNameMap,
+	): {
 		icon: Component;
 		message: string;
 		severity: "muted" | "destructive" | "warning";
@@ -54,12 +64,14 @@
 		switch (lock.kind) {
 			case "MaxCountReached":
 				return { icon: Ban, message: "Maximum buildings reached", severity: "muted" };
-			case "BuildingLevelRequired":
+			case "BuildingLevelRequired": {
+				const name = buildingNames.get(lock.building) ?? `Building #${lock.building}`;
 				return {
 					icon: Building2,
-					message: `Requires ${lock.building} at level ${lock.required} (current: ${lock.current})`,
+					message: `Requires ${name} level ${lock.required} (current: ${lock.current})`,
 					severity: "destructive",
 				};
+			}
 			case "TechNodeRequired":
 				return {
 					icon: FlaskConical,
@@ -72,14 +84,17 @@
 		}
 	}
 
-	async function handleBuild(building: BuildingAvailability) {
-		if (!onbuild) return;
-		buildingInProgress = building.building.id;
-		try {
-			await onbuild(building);
-		} finally {
-			buildingInProgress = null;
-		}
+	function handleConstruct(buildingId: string): SubmitFunction {
+		return () => {
+			buildingInProgress = buildingId;
+			return async ({ result }) => {
+				buildingInProgress = null;
+				if (result.type === "success") {
+					open = false;
+					await invalidateAll();
+				}
+			};
+		};
 	}
 </script>
 
@@ -91,11 +106,12 @@
 		</Dialog.Header>
 
 		<div class="flex-1 overflow-y-auto pr-2">
-			{#await getAvailableBuildings()}
+			{#await Promise.all([getAvailableBuildings(), getAllBuildingDefinitions()])}
 				<div class="flex h-full items-center justify-center">
 					<p class="text-muted-foreground">Loading buildings...</p>
 				</div>
-			{:then buildings}
+			{:then [buildings, definitions]}
+				{@const buildingNames = new Map(definitions.map((d) => [d.id, d.name]))}
 				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 					{#each buildings as bld (bld.building.id)}
 						<Card.Root
@@ -165,7 +181,7 @@
 									<Separator />
 									<div class="space-y-1.5">
 										{#each bld.locks as lock, i (i)}
-											{@const info = getLockInfo(lock)}
+											{@const info = getLockInfo(lock, buildingNames)}
 											<div
 												class="flex items-center gap-2 text-sm"
 												class:text-muted-foreground={info.severity === "muted"}
@@ -182,18 +198,28 @@
 
 							<Card.Footer>
 								{@const affordable = canAfford(bld.construction)}
-								<Button
-									variant={bld.buildable && affordable ? "success" : "outline"}
-									disabled={!bld.buildable || !affordable || buildingInProgress === bld.building.id}
+								<form
+									method="POST"
+									action="/game?/construct"
+									use:enhance={handleConstruct(bld.building.id)}
 									class="w-full"
-									onclick={() => handleBuild(bld)}
 								>
-									{#if buildingInProgress === bld.building.id}
-										Building...
-									{:else}
-										Build
-									{/if}
-								</Button>
+									<input type="hidden" name="building_id" value={bld.building.id} />
+									<Button
+										type="submit"
+										variant={bld.buildable && affordable ? "success" : "outline"}
+										disabled={!bld.buildable ||
+											!affordable ||
+											buildingInProgress === bld.building.id}
+										class="w-full"
+									>
+										{#if buildingInProgress === bld.building.id}
+											Building...
+										{:else}
+											Build
+										{/if}
+									</Button>
+								</form>
 							</Card.Footer>
 						</Card.Root>
 					{/each}

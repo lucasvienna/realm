@@ -74,3 +74,59 @@ export type BuildingLock =
 	| { kind: "MaxCountReached" }
 	| { kind: "BuildingLevelRequired"; building: number; current: number; required: number }
 	| { kind: "TechNodeRequired"; node_id: string };
+
+/** Full building definition with all levels, used by `/game/buildings/all` */
+export interface BuildingDefinition {
+	id: number;
+	name: string;
+	max_level: number;
+	max_count: number;
+	faction: Faction;
+	starter: boolean;
+	unit_types: string[];
+	levels: BuildingLevelInfo[];
+}
+
+/** Level-specific information including costs, production, capacity, and requirements */
+export interface BuildingLevelInfo {
+	level: number;
+	upgrade_seconds: number;
+	training_capacity: number | null;
+	costs: ResourceCosts;
+	production: ResourceProduction;
+	capacity: ResourceCapacity;
+	requirements: LevelRequirement[];
+}
+
+export interface ResourceCosts {
+	food: number;
+	wood: number;
+	stone: number;
+	gold: number;
+}
+
+export interface ResourceProduction {
+	population: number;
+	food: number;
+	wood: number;
+	stone: number;
+	gold: number;
+}
+
+export interface ResourceCapacity {
+	food: number;
+	wood: number;
+	stone: number;
+	gold: number;
+	food_acc: number;
+	wood_acc: number;
+	stone_acc: number;
+	gold_acc: number;
+}
+
+export interface LevelRequirement {
+	required_building_id?: number;
+	required_building_level?: number;
+	required_tech_id?: string;
+	required_tech_level?: number;
+}

@@ -1,4 +1,4 @@
-import type { GameBuilding } from "$lib/domain/building";
+import type { BuildingState, GameBuilding } from "$lib/domain/building";
 import type { ResourcesState } from "$lib/domain/resource";
 
 import { getApi } from "$lib/server/api";
@@ -7,6 +7,23 @@ import invariant from "tiny-invariant";
 import type { Actions } from "./$types";
 
 export const actions: Actions = {
+	async construct({ request }) {
+		const data = await request.formData();
+		const buildingId = data.get("building_id")?.valueOf();
+		invariant(buildingId && typeof buildingId === "string", "Building ID should not be null");
+
+		const api = getApi();
+		return api
+			.post("game/buildings/construct", {
+				json: { building_id: parseInt(buildingId, 10) },
+			})
+			.json<BuildingState>()
+			.catch((e) => {
+				console.error("Construction failed:", e.message);
+				throw e;
+			});
+	},
+
 	async collect() {
 		const api = getApi();
 		return api

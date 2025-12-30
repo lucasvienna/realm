@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { BuildingState } from "$lib/domain/building";
 	import { Progress } from "$lib/components/ui/progress";
+	import { DateTime } from "luxon";
+	import { onDestroy } from "svelte";
 
 	interface Props {
 		building: BuildingState;
@@ -8,6 +10,44 @@
 	}
 
 	let { building, onclick }: Props = $props();
+
+	// Reactive progress calculation for upgrading buildings
+	let now = $state(DateTime.now());
+	let progressInterval: ReturnType<typeof setInterval> | null = null;
+
+	$effect(() => {
+		if (building.upgrade_finishes_at) {
+			// Update progress every second while upgrading
+			progressInterval = setInterval(() => {
+				now = DateTime.now();
+			}, 1000);
+		} else if (progressInterval) {
+			clearInterval(progressInterval);
+			progressInterval = null;
+		}
+	});
+
+	onDestroy(() => {
+		if (progressInterval) {
+			clearInterval(progressInterval);
+		}
+	});
+
+	const upgradeProgress = $derived.by(() => {
+		if (!building.upgrade_finishes_at) return 0;
+
+		const finishTime = DateTime.fromISO(building.upgrade_finishes_at);
+		if (!finishTime.isValid) return 0;
+
+		const totalSeconds = parseInt(building.upgrade_seconds, 10);
+		if (totalSeconds <= 0) return 100;
+
+		const startTime = finishTime.minus({ seconds: totalSeconds });
+		const elapsed = now.diff(startTime, "seconds").seconds;
+		const progress = Math.min(100, Math.max(0, (elapsed / totalSeconds) * 100));
+
+		return progress;
+	});
 
 	// Building type to color and shape mapping
 	type BuildingStyle = {
@@ -402,7 +442,7 @@
 	<!-- Upgrade progress bar -->
 	{#if isUpgrading}
 		<div class="mt-1 w-full">
-			<Progress value={50} class="h-1" />
+			<Progress value={upgradeProgress} class="h-1" />
 		</div>
 	{/if}
 

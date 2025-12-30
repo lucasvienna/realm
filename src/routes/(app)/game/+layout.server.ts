@@ -1,12 +1,14 @@
 import type { GameData } from "$lib/domain/game";
 
 import { getApi } from "$lib/server/api";
+import { requireLogin } from "$lib/server/auth";
 import { HTTPError } from "ky";
 import invariant from "tiny-invariant";
 
 import type { LayoutServerLoad } from "./$types";
 
 export const load: LayoutServerLoad = async () => {
+	requireLogin();
 	const api = getApi();
 	return api
 		.get("game")

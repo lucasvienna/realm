@@ -88,6 +88,12 @@
 
 	const isUpgrading = $derived(building.upgrade_finishes_at != null);
 	const isMaxLevel = $derived(building.level >= building.max_level);
+	const isReadyToConfirm = $derived.by(() => {
+		if (!building.upgrade_finishes_at) return false;
+		const finishTime = DateTime.fromISO(building.upgrade_finishes_at);
+		if (!finishTime.isValid) return false;
+		return now >= finishTime;
+	});
 </script>
 
 <button
@@ -422,8 +428,13 @@
 		<!-- Upgrade indicator -->
 		{#if isUpgrading}
 			<g>
-				<circle cx="15" cy="18" r="10" fill="#f59e0b" stroke="#d97706" stroke-width="1.5" />
-				<text x="15" y="23" text-anchor="middle" font-size="12" fill="white">⚡</text>
+				{#if isReadyToConfirm}
+					<circle cx="15" cy="18" r="10" fill="#22c55e" stroke="#16a34a" stroke-width="1.5" />
+					<text x="15" y="23" text-anchor="middle" font-size="12" fill="white">✓</text>
+				{:else}
+					<circle cx="15" cy="18" r="10" fill="#f59e0b" stroke="#d97706" stroke-width="1.5" />
+					<text x="15" y="23" text-anchor="middle" font-size="12" fill="white">⚡</text>
+				{/if}
 			</g>
 		{/if}
 
@@ -442,7 +453,10 @@
 	<!-- Upgrade progress bar -->
 	{#if isUpgrading}
 		<div class="mt-1 w-full">
-			<Progress value={upgradeProgress} class="h-1" />
+			<Progress
+				value={upgradeProgress}
+				class="h-1 {isReadyToConfirm ? '[&>div]:bg-green-500' : ''}"
+			/>
 		</div>
 	{/if}
 

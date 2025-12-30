@@ -44,7 +44,7 @@
 					submitting = true;
 
 					return async ({ update }) => {
-						await update();
+						await update({ invalidateAll: true });
 						submitting = false;
 					};
 				}}

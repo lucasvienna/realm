@@ -1,28 +1,10 @@
 import type { GameBuilding } from "$lib/domain/building";
-import type { GameData } from "$lib/domain/game";
 import type { ResourcesState } from "$lib/domain/resource";
 
 import { getApi } from "$lib/server/api";
-import { requireLogin } from "$lib/server/auth";
-import { HTTPError } from "ky";
 import invariant from "tiny-invariant";
 
-import type { Actions, PageServerLoad } from "./$types";
-
-export const load: PageServerLoad = async () => {
-	requireLogin();
-
-	const api = getApi();
-	return api
-		.get("game")
-		.json<GameData>()
-		.then((gameData) => ({ gameData }))
-		.catch(async (e) => {
-			invariant(e instanceof HTTPError, "ky didn't return HTTPError");
-			const body = await e.response.json().catch(() => ({ error: "Unknown error" }));
-			throw new Error(`Failed to load game data: ${body.error}`);
-		});
-};
+import type { Actions } from "./$types";
 
 export const actions: Actions = {
 	async collect() {

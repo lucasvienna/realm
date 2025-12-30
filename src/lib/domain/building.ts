@@ -53,9 +53,24 @@ export interface BuildingAvailability {
 	max_count: number;
 	max_level: number;
 	locks: BuildingLock[];
+	construction: ConstructionInfo;
+}
+
+/// Contains resource costs and time required for building construction
+export interface ConstructionInfo {
+	/// Food required for construction
+	food: number;
+	/// Wood required for construction
+	wood: number;
+	/// Stone required for construction
+	stone: number;
+	/// Gold required for construction
+	gold: number;
+	/// Time in seconds to complete construction
+	time_seconds: number;
 }
 
 export type BuildingLock =
-	| { type: "MaxCountReached" }
-	| { type: "BuildingLevelRequired"; building: number; current: number; required: number }
-	| { type: "TechNodeRequired"; node_id: string };
+	| { kind: "MaxCountReached" }
+	| { kind: "BuildingLevelRequired"; building: number; current: number; required: number }
+	| { kind: "TechNodeRequired"; node_id: string };

@@ -2,7 +2,7 @@ import { DateTime } from "luxon";
 
 export interface UpgradeProgressParams {
 	upgradeFinishesAt: string | null;
-	upgradeSeconds: string;
+	upgradeSeconds: number;
 	now: DateTime;
 }
 
@@ -16,7 +16,7 @@ export function calculateUpgradeProgress({
 	const finishTime = DateTime.fromISO(upgradeFinishesAt);
 	if (!finishTime.isValid) return 0;
 
-	const totalSeconds = parseInt(upgradeSeconds, 10);
+	const totalSeconds = upgradeSeconds;
 	if (totalSeconds <= 0) return 100;
 
 	const startTime = finishTime.minus({ seconds: totalSeconds });

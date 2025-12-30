@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
+	import { invalidateAll } from "$app/navigation";
+	import type { SubmitFunction } from "@sveltejs/kit";
 	import type { BuildingState } from "$lib/domain/building";
 	import type { ResourcesState } from "$lib/domain/resource";
 	import { Button } from "$lib/components/ui/button";
@@ -11,6 +13,7 @@
 	import Coins from "@lucide/svelte/icons/coins";
 	import Clock from "@lucide/svelte/icons/clock";
 	import { DateTime } from "luxon";
+	import { onDestroy } from "svelte";
 
 	interface Props {
 		building: BuildingState | null;
@@ -20,6 +23,59 @@
 	}
 
 	let { building, resources, open, onOpenChange }: Props = $props();
+
+	// Reactive progress calculation
+	let now = $state(DateTime.now());
+	let progressInterval: ReturnType<typeof setInterval> | null = null;
+
+	$effect(() => {
+		if (building?.upgrade_finishes_at) {
+			progressInterval = setInterval(() => {
+				now = DateTime.now();
+			}, 1000);
+		} else if (progressInterval) {
+			clearInterval(progressInterval);
+			progressInterval = null;
+		}
+	});
+
+	onDestroy(() => {
+		if (progressInterval) {
+			clearInterval(progressInterval);
+		}
+	});
+
+	const upgradeProgress = $derived.by(() => {
+		if (!building?.upgrade_finishes_at) return 0;
+
+		const finishTime = DateTime.fromISO(building.upgrade_finishes_at);
+		if (!finishTime.isValid) return 0;
+
+		const totalSeconds = parseInt(building.upgrade_seconds, 10);
+		if (totalSeconds <= 0) return 100;
+
+		const startTime = finishTime.minus({ seconds: totalSeconds });
+		const elapsed = now.diff(startTime, "seconds").seconds;
+		return Math.min(100, Math.max(0, (elapsed / totalSeconds) * 100));
+	});
+
+	const remainingTime = $derived.by(() => {
+		if (!building?.upgrade_finishes_at) return null;
+
+		const finishTime = DateTime.fromISO(building.upgrade_finishes_at);
+		if (!finishTime.isValid) return null;
+
+		const remaining = finishTime.diff(now, ["hours", "minutes", "seconds"]);
+		if (remaining.as("seconds") <= 0) return "Complete!";
+
+		const hours = Math.floor(remaining.hours);
+		const minutes = Math.floor(remaining.minutes);
+		const seconds = Math.floor(remaining.seconds);
+
+		if (hours > 0) return `${hours}h ${minutes}m remaining`;
+		if (minutes > 0) return `${minutes}m ${seconds}s remaining`;
+		return `${seconds}s remaining`;
+	});
 
 	function canUpgrade(bld: BuildingState): boolean {
 		return (
@@ -32,15 +88,23 @@
 		);
 	}
 
-	function canConfirm(bld: BuildingState): boolean {
-		if (!bld.upgrade_finishes_at) return false;
-		const finish_time = DateTime.fromISO(bld.upgrade_finishes_at);
+	function canConfirm(): boolean {
+		if (!building?.upgrade_finishes_at) return false;
+		const finish_time = DateTime.fromISO(building.upgrade_finishes_at);
 		if (!finish_time.isValid) return false;
-		return DateTime.now() >= finish_time;
+		return now >= finish_time;
 	}
 
 	const isUpgrading = $derived(building?.upgrade_finishes_at != null);
 	const isMaxLevel = $derived(building ? building.level >= building.max_level : false);
+
+	const handleFormResult: SubmitFunction = () => {
+		return async ({ result }) => {
+			if (result.type === "success") {
+				await invalidateAll();
+			}
+		};
+	};
 </script>
 
 <Dialog.Root {open} {onOpenChange}>
@@ -108,10 +172,10 @@
 				{#if isUpgrading}
 					<div>
 						<h4 class="mb-3 text-sm font-medium">Upgrade Progress</h4>
-						<Progress value={50} class="h-2" />
+						<Progress value={upgradeProgress} class="h-2" />
 						<p class="mt-2 flex items-center gap-1 text-sm text-muted-foreground">
 							<Clock class="size-4" />
-							Completing soon...
+							{remainingTime}
 						</p>
 					</div>
 				{/if}
@@ -175,14 +239,14 @@
 			</div>
 
 			<Dialog.Footer class="mt-6">
-				<form method="POST" action="/game?/upgrade" use:enhance class="w-full">
+				<form method="POST" action="/game?/upgrade" use:enhance={handleFormResult} class="w-full">
 					<input name="bld_id" value={building.id} type="hidden" />
 					{#if isUpgrading}
 						<Button
 							class="w-full"
 							type="submit"
 							formaction="/game?/confirm"
-							disabled={!canConfirm(building)}
+							disabled={!canConfirm()}
 						>
 							Confirm Upgrade
 						</Button>

@@ -39,6 +39,143 @@
 	--sidebar-accent-foreground: oklch(0.21 0.006 285.885);
 	--sidebar-border: oklch(0.92 0.004 286.32);
 	--sidebar-ring: oklch(0.705 0.015 286.067);
+
+	/* Building type colors - Keep/Castle/Town Hall (Indigo) */
+	--building-keep-fill: oklch(0.585 0.233 264.052);
+	--building-keep-stroke: oklch(0.457 0.24 277.023);
+	--building-keep-accent: oklch(0.818 0.119 264.182);
+
+	/* Building type colors - Farm (Amber) */
+	--building-farm-fill: oklch(0.769 0.188 70.08);
+	--building-farm-stroke: oklch(0.666 0.179 58.318);
+	--building-farm-accent: oklch(0.879 0.169 91.605);
+
+	/* Building type colors - Lumber (Green) */
+	--building-lumber-fill: oklch(0.723 0.219 142.495);
+	--building-lumber-stroke: oklch(0.627 0.194 142.495);
+	--building-lumber-accent: oklch(0.871 0.178 142.495);
+
+	/* Building type colors - Quarry (Slate) */
+	--building-quarry-fill: oklch(0.554 0.046 257.417);
+	--building-quarry-stroke: oklch(0.446 0.043 257.281);
+	--building-quarry-accent: oklch(0.869 0.022 252.894);
+
+	/* Building type colors - Mine (Yellow) */
+	--building-mine-fill: oklch(0.795 0.184 86.047);
+	--building-mine-stroke: oklch(0.681 0.162 75.834);
+	--building-mine-accent: oklch(0.945 0.129 101.54);
+
+	/* Building type colors - Barracks (Red) */
+	--building-barracks-fill: oklch(0.637 0.237 25.331);
+	--building-barracks-stroke: oklch(0.577 0.245 27.325);
+	--building-barracks-accent: oklch(0.808 0.114 19.571);
+
+	/* Building type colors - Storage/Warehouse (Violet) */
+	--building-storage-fill: oklch(0.606 0.25 292.717);
+	--building-storage-stroke: oklch(0.541 0.281 293.009);
+	--building-storage-accent: oklch(0.81 0.111 293.571);
+
+	/* Building type colors - Granary (Orange) */
+	--building-granary-fill: oklch(0.705 0.213 47.604);
+	--building-granary-stroke: oklch(0.646 0.222 41.116);
+	--building-granary-accent: oklch(0.837 0.128 66.29);
+
+	/* Building type colors - Default (Zinc) */
+	--building-default-fill: oklch(0.552 0.016 285.938);
+	--building-default-stroke: oklch(0.442 0.017 285.786);
+	--building-default-accent: oklch(0.705 0.015 286.067);
+
+	/* Building type colors - Research (Cyan) */
+	--building-research-fill: oklch(0.715 0.143 215.221);
+	--building-research-stroke: oklch(0.609 0.126 221.723);
+	--building-research-accent: oklch(0.865 0.127 207.078);
+
+	/* Building type colors - Military Range/Stables (Rose) */
+	--building-military-fill: oklch(0.645 0.246 16.439);
+	--building-military-stroke: oklch(0.586 0.253 17.585);
+	--building-military-accent: oklch(0.81 0.117 11.638);
+
+	/* Building type colors - Workshop (Bronze/Amber-Brown) */
+	--building-workshop-fill: oklch(0.553 0.135 66.442);
+	--building-workshop-stroke: oklch(0.473 0.137 46.201);
+	--building-workshop-accent: oklch(0.749 0.154 55.934);
+
+	/* Building type colors - Mage Tower (Purple/Fuchsia) */
+	--building-magic-fill: oklch(0.667 0.295 322.15);
+	--building-magic-stroke: oklch(0.591 0.293 319.676);
+	--building-magic-accent: oklch(0.833 0.145 321.434);
+
+	/* Building type colors - Walls (Stone Gray) */
+	--building-walls-fill: oklch(0.553 0.013 56.288);
+	--building-walls-stroke: oklch(0.444 0.011 73.639);
+	--building-walls-accent: oklch(0.709 0.01 56.259);
+
+	/* Building type colors - Church (Cream/Warm White) */
+	--building-church-fill: oklch(0.928 0.026 93.211);
+	--building-church-stroke: oklch(0.795 0.184 86.047);
+	--building-church-accent: oklch(0.967 0.015 95.282);
+
+	/* Building type colors - Monument (Gold) */
+	--building-monument-fill: oklch(0.795 0.184 86.047);
+	--building-monument-stroke: oklch(0.681 0.162 75.834);
+	--building-monument-accent: oklch(0.945 0.129 101.54);
+
+	/* Building type colors - Market (Emerald/Teal) */
+	--building-market-fill: oklch(0.696 0.17 162.48);
+	--building-market-stroke: oklch(0.6 0.145 163.225);
+	--building-market-accent: oklch(0.845 0.143 164.978);
+
+	/* Building type colors - Embassy (Sky Blue) */
+	--building-embassy-fill: oklch(0.685 0.169 237.323);
+	--building-embassy-stroke: oklch(0.588 0.158 241.966);
+	--building-embassy-accent: oklch(0.827 0.119 230.318);
+
+	/* Building detail colors - Wood */
+	--building-wood-dark: oklch(0.393 0.111 45.115);
+	--building-wood-medium: oklch(0.473 0.137 46.201);
+	--building-wood-light: oklch(0.554 0.135 66.442);
+
+	/* Building detail colors - Stone */
+	--building-stone-dark: oklch(0.129 0.007 56.366);
+	--building-stone-medium: oklch(0.553 0.013 56.288);
+	--building-stone-light: oklch(0.709 0.01 56.259);
+
+	/* Building detail colors - Metal/Gray */
+	--building-metal-light: oklch(0.872 0.01 258.338);
+	--building-metal-medium: oklch(0.704 0.04 256.788);
+
+	/* Building status indicators */
+	--building-status-ready-fill: oklch(0.723 0.219 142.495);
+	--building-status-ready-stroke: oklch(0.627 0.194 142.495);
+	--building-status-progress-fill: oklch(0.769 0.188 70.08);
+	--building-status-progress-stroke: oklch(0.666 0.179 58.318);
+	--building-status-max-fill: oklch(0.795 0.184 86.047);
+	--building-status-max-stroke: oklch(0.681 0.162 75.834);
+
+	/* Landscape colors - Grass */
+	--landscape-grass-dark: oklch(0.448 0.119 153.199);
+	--landscape-grass-medium: oklch(0.527 0.154 150.069);
+
+	/* Landscape colors - Hills */
+	--landscape-hill: oklch(0.871 0.178 142.495);
+
+	/* Landscape colors - Path/Road */
+	--landscape-path: oklch(0.709 0.01 56.259);
+
+	/* Landscape colors - Rocks */
+	--landscape-rock: oklch(0.553 0.013 56.288);
+
+	/* Landscape colors - Flowers */
+	--landscape-flower-amber: oklch(0.828 0.189 84.429);
+	--landscape-flower-orange: oklch(0.75 0.183 55.934);
+	--landscape-flower-pink: oklch(0.718 0.202 3.836);
+
+	/* Landscape colors - Trees */
+	--landscape-tree-foliage: oklch(0.448 0.119 153.199);
+	--landscape-tree-trunk: oklch(0.393 0.111 45.115);
+
+	/* Landscape colors - Vignette */
+	--landscape-vignette: oklch(0 0 0 / 10%);
 }
 
 .dark {
@@ -73,6 +210,143 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.552 0.016 285.938);
+
+	/* Building type colors - Keep (brighter for dark mode) */
+	--building-keep-fill: oklch(0.65 0.25 264.052);
+	--building-keep-stroke: oklch(0.52 0.26 277.023);
+	--building-keep-accent: oklch(0.85 0.14 264.182);
+
+	/* Building type colors - Farm */
+	--building-farm-fill: oklch(0.82 0.2 70.08);
+	--building-farm-stroke: oklch(0.72 0.19 58.318);
+	--building-farm-accent: oklch(0.92 0.18 91.605);
+
+	/* Building type colors - Lumber */
+	--building-lumber-fill: oklch(0.78 0.24 142.495);
+	--building-lumber-stroke: oklch(0.68 0.21 142.495);
+	--building-lumber-accent: oklch(0.9 0.19 142.495);
+
+	/* Building type colors - Quarry */
+	--building-quarry-fill: oklch(0.62 0.05 257.417);
+	--building-quarry-stroke: oklch(0.52 0.05 257.281);
+	--building-quarry-accent: oklch(0.9 0.025 252.894);
+
+	/* Building type colors - Mine */
+	--building-mine-fill: oklch(0.85 0.2 86.047);
+	--building-mine-stroke: oklch(0.75 0.18 75.834);
+	--building-mine-accent: oklch(0.96 0.14 101.54);
+
+	/* Building type colors - Barracks */
+	--building-barracks-fill: oklch(0.7 0.26 25.331);
+	--building-barracks-stroke: oklch(0.63 0.27 27.325);
+	--building-barracks-accent: oklch(0.85 0.13 19.571);
+
+	/* Building type colors - Storage */
+	--building-storage-fill: oklch(0.67 0.27 292.717);
+	--building-storage-stroke: oklch(0.6 0.3 293.009);
+	--building-storage-accent: oklch(0.85 0.13 293.571);
+
+	/* Building type colors - Granary */
+	--building-granary-fill: oklch(0.76 0.23 47.604);
+	--building-granary-stroke: oklch(0.7 0.24 41.116);
+	--building-granary-accent: oklch(0.88 0.14 66.29);
+
+	/* Building type colors - Default */
+	--building-default-fill: oklch(0.62 0.02 285.938);
+	--building-default-stroke: oklch(0.52 0.02 285.786);
+	--building-default-accent: oklch(0.77 0.02 286.067);
+
+	/* Building type colors - Research */
+	--building-research-fill: oklch(0.77 0.16 215.221);
+	--building-research-stroke: oklch(0.67 0.14 221.723);
+	--building-research-accent: oklch(0.9 0.14 207.078);
+
+	/* Building type colors - Military */
+	--building-military-fill: oklch(0.7 0.27 16.439);
+	--building-military-stroke: oklch(0.64 0.27 17.585);
+	--building-military-accent: oklch(0.85 0.13 11.638);
+
+	/* Building type colors - Workshop */
+	--building-workshop-fill: oklch(0.62 0.15 66.442);
+	--building-workshop-stroke: oklch(0.55 0.15 46.201);
+	--building-workshop-accent: oklch(0.8 0.17 55.934);
+
+	/* Building type colors - Mage Tower */
+	--building-magic-fill: oklch(0.72 0.31 322.15);
+	--building-magic-stroke: oklch(0.65 0.31 319.676);
+	--building-magic-accent: oklch(0.87 0.16 321.434);
+
+	/* Building type colors - Walls */
+	--building-walls-fill: oklch(0.62 0.015 56.288);
+	--building-walls-stroke: oklch(0.52 0.013 73.639);
+	--building-walls-accent: oklch(0.77 0.012 56.259);
+
+	/* Building type colors - Church */
+	--building-church-fill: oklch(0.95 0.03 93.211);
+	--building-church-stroke: oklch(0.85 0.2 86.047);
+	--building-church-accent: oklch(0.98 0.02 95.282);
+
+	/* Building type colors - Monument */
+	--building-monument-fill: oklch(0.85 0.2 86.047);
+	--building-monument-stroke: oklch(0.75 0.18 75.834);
+	--building-monument-accent: oklch(0.96 0.14 101.54);
+
+	/* Building type colors - Market */
+	--building-market-fill: oklch(0.75 0.19 162.48);
+	--building-market-stroke: oklch(0.66 0.16 163.225);
+	--building-market-accent: oklch(0.88 0.16 164.978);
+
+	/* Building type colors - Embassy */
+	--building-embassy-fill: oklch(0.74 0.19 237.323);
+	--building-embassy-stroke: oklch(0.65 0.17 241.966);
+	--building-embassy-accent: oklch(0.87 0.13 230.318);
+
+	/* Building detail colors - Wood */
+	--building-wood-dark: oklch(0.45 0.12 45.115);
+	--building-wood-medium: oklch(0.55 0.15 46.201);
+	--building-wood-light: oklch(0.62 0.15 66.442);
+
+	/* Building detail colors - Stone */
+	--building-stone-dark: oklch(0.2 0.01 56.366);
+	--building-stone-medium: oklch(0.62 0.015 56.288);
+	--building-stone-light: oklch(0.77 0.012 56.259);
+
+	/* Building detail colors - Metal/Gray */
+	--building-metal-light: oklch(0.9 0.012 258.338);
+	--building-metal-medium: oklch(0.77 0.045 256.788);
+
+	/* Building status indicators */
+	--building-status-ready-fill: oklch(0.78 0.24 142.495);
+	--building-status-ready-stroke: oklch(0.68 0.21 142.495);
+	--building-status-progress-fill: oklch(0.82 0.2 70.08);
+	--building-status-progress-stroke: oklch(0.72 0.19 58.318);
+	--building-status-max-fill: oklch(0.85 0.2 86.047);
+	--building-status-max-stroke: oklch(0.75 0.18 75.834);
+
+	/* Landscape colors - Grass (darker/richer for dark mode) */
+	--landscape-grass-dark: oklch(0.35 0.1 153.199);
+	--landscape-grass-medium: oklch(0.42 0.13 150.069);
+
+	/* Landscape colors - Hills */
+	--landscape-hill: oklch(0.55 0.15 142.495);
+
+	/* Landscape colors - Path/Road */
+	--landscape-path: oklch(0.5 0.012 56.259);
+
+	/* Landscape colors - Rocks */
+	--landscape-rock: oklch(0.45 0.015 56.288);
+
+	/* Landscape colors - Flowers (slightly brighter for visibility) */
+	--landscape-flower-amber: oklch(0.85 0.2 84.429);
+	--landscape-flower-orange: oklch(0.78 0.2 55.934);
+	--landscape-flower-pink: oklch(0.75 0.22 3.836);
+
+	/* Landscape colors - Trees */
+	--landscape-tree-foliage: oklch(0.35 0.1 153.199);
+	--landscape-tree-trunk: oklch(0.35 0.1 45.115);
+
+	/* Landscape colors - Vignette (stronger in dark mode) */
+	--landscape-vignette: oklch(0 0 0 / 20%);
 }
 
 @theme inline {
@@ -111,6 +385,93 @@
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
+
+	/* Building type colors */
+	--color-building-keep-fill: var(--building-keep-fill);
+	--color-building-keep-stroke: var(--building-keep-stroke);
+	--color-building-keep-accent: var(--building-keep-accent);
+	--color-building-farm-fill: var(--building-farm-fill);
+	--color-building-farm-stroke: var(--building-farm-stroke);
+	--color-building-farm-accent: var(--building-farm-accent);
+	--color-building-lumber-fill: var(--building-lumber-fill);
+	--color-building-lumber-stroke: var(--building-lumber-stroke);
+	--color-building-lumber-accent: var(--building-lumber-accent);
+	--color-building-quarry-fill: var(--building-quarry-fill);
+	--color-building-quarry-stroke: var(--building-quarry-stroke);
+	--color-building-quarry-accent: var(--building-quarry-accent);
+	--color-building-mine-fill: var(--building-mine-fill);
+	--color-building-mine-stroke: var(--building-mine-stroke);
+	--color-building-mine-accent: var(--building-mine-accent);
+	--color-building-barracks-fill: var(--building-barracks-fill);
+	--color-building-barracks-stroke: var(--building-barracks-stroke);
+	--color-building-barracks-accent: var(--building-barracks-accent);
+	--color-building-storage-fill: var(--building-storage-fill);
+	--color-building-storage-stroke: var(--building-storage-stroke);
+	--color-building-storage-accent: var(--building-storage-accent);
+	--color-building-granary-fill: var(--building-granary-fill);
+	--color-building-granary-stroke: var(--building-granary-stroke);
+	--color-building-granary-accent: var(--building-granary-accent);
+	--color-building-default-fill: var(--building-default-fill);
+	--color-building-default-stroke: var(--building-default-stroke);
+	--color-building-default-accent: var(--building-default-accent);
+	--color-building-research-fill: var(--building-research-fill);
+	--color-building-research-stroke: var(--building-research-stroke);
+	--color-building-research-accent: var(--building-research-accent);
+	--color-building-military-fill: var(--building-military-fill);
+	--color-building-military-stroke: var(--building-military-stroke);
+	--color-building-military-accent: var(--building-military-accent);
+	--color-building-workshop-fill: var(--building-workshop-fill);
+	--color-building-workshop-stroke: var(--building-workshop-stroke);
+	--color-building-workshop-accent: var(--building-workshop-accent);
+	--color-building-magic-fill: var(--building-magic-fill);
+	--color-building-magic-stroke: var(--building-magic-stroke);
+	--color-building-magic-accent: var(--building-magic-accent);
+	--color-building-walls-fill: var(--building-walls-fill);
+	--color-building-walls-stroke: var(--building-walls-stroke);
+	--color-building-walls-accent: var(--building-walls-accent);
+	--color-building-church-fill: var(--building-church-fill);
+	--color-building-church-stroke: var(--building-church-stroke);
+	--color-building-church-accent: var(--building-church-accent);
+	--color-building-monument-fill: var(--building-monument-fill);
+	--color-building-monument-stroke: var(--building-monument-stroke);
+	--color-building-monument-accent: var(--building-monument-accent);
+	--color-building-market-fill: var(--building-market-fill);
+	--color-building-market-stroke: var(--building-market-stroke);
+	--color-building-market-accent: var(--building-market-accent);
+	--color-building-embassy-fill: var(--building-embassy-fill);
+	--color-building-embassy-stroke: var(--building-embassy-stroke);
+	--color-building-embassy-accent: var(--building-embassy-accent);
+
+	/* Building detail colors */
+	--color-building-wood-dark: var(--building-wood-dark);
+	--color-building-wood-medium: var(--building-wood-medium);
+	--color-building-wood-light: var(--building-wood-light);
+	--color-building-stone-dark: var(--building-stone-dark);
+	--color-building-stone-medium: var(--building-stone-medium);
+	--color-building-stone-light: var(--building-stone-light);
+	--color-building-metal-light: var(--building-metal-light);
+	--color-building-metal-medium: var(--building-metal-medium);
+
+	/* Building status indicators */
+	--color-building-status-ready-fill: var(--building-status-ready-fill);
+	--color-building-status-ready-stroke: var(--building-status-ready-stroke);
+	--color-building-status-progress-fill: var(--building-status-progress-fill);
+	--color-building-status-progress-stroke: var(--building-status-progress-stroke);
+	--color-building-status-max-fill: var(--building-status-max-fill);
+	--color-building-status-max-stroke: var(--building-status-max-stroke);
+
+	/* Landscape colors */
+	--color-landscape-grass-dark: var(--landscape-grass-dark);
+	--color-landscape-grass-medium: var(--landscape-grass-medium);
+	--color-landscape-hill: var(--landscape-hill);
+	--color-landscape-path: var(--landscape-path);
+	--color-landscape-rock: var(--landscape-rock);
+	--color-landscape-flower-amber: var(--landscape-flower-amber);
+	--color-landscape-flower-orange: var(--landscape-flower-orange);
+	--color-landscape-flower-pink: var(--landscape-flower-pink);
+	--color-landscape-tree-foliage: var(--landscape-tree-foliage);
+	--color-landscape-tree-trunk: var(--landscape-tree-trunk);
+	--color-landscape-vignette: var(--landscape-vignette);
 }
 
 @layer base {

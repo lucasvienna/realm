@@ -32,7 +32,7 @@ export interface BuildingState {
 	level: number;
 	max_level: number;
 	max_count: number;
-	upgrade_seconds: string;
+	upgrade_seconds: number;
 	upgrade_finishes_at: string | null;
 	req_food: number | null;
 	req_wood: number | null;

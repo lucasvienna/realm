@@ -1,10 +1,13 @@
+import type { GameBuilding } from "$lib/domain/building";
+import type { GameData } from "$lib/domain/game";
+import type { ResourcesState } from "$lib/domain/resource";
+
 import { getApi } from "$lib/server/api";
 import { requireLogin } from "$lib/server/auth";
 import { HTTPError } from "ky";
 import invariant from "tiny-invariant";
 
 import type { Actions, PageServerLoad } from "./$types";
-import type { GameBuilding, GameData, ResourcesState } from "./game";
 
 export const load: PageServerLoad = async () => {
 	requireLogin();

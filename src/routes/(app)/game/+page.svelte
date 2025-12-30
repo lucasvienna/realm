@@ -11,7 +11,7 @@
 	import Wheat from "@lucide/svelte/icons/wheat";
 	import { DateTime } from "luxon";
 	import type { PageProps } from "./$types";
-	import type { BuildingState } from "./game";
+	import type { BuildingState } from "$lib/domain/building";
 
 	let { data }: PageProps = $props();
 

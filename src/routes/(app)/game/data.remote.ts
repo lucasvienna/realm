@@ -1,10 +1,10 @@
+import type { BuildingAvailability } from "$lib/domain/building";
+
 import { query } from "$app/server";
 import { getApi } from "$lib/server/api";
 import { requireLogin } from "$lib/server/auth";
 import { HTTPError } from "ky";
 import invariant from "tiny-invariant";
-
-import type { BuildingAvailability } from "./game";
 
 export const getAvailableBuildings = query(async () => {
 	requireLogin();

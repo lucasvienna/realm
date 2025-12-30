@@ -11,7 +11,7 @@
 
 	let { buildings, resources }: Props = $props();
 
-	let selectedBuilding = $state<BuildingState | null>(null);
+	let selectedBuildingId = $state<string | null>(null);
 	let panelOpen = $state(false);
 
 	// Flatten buildings into a single array for display
@@ -21,15 +21,20 @@
 			.filter((b): b is BuildingState => b != null),
 	);
 
+	// Derive selected building from fresh data
+	const selectedBuilding = $derived(
+		selectedBuildingId ? (allBuildings.find((b) => b.id === selectedBuildingId) ?? null) : null,
+	);
+
 	function selectBuilding(building: BuildingState) {
-		selectedBuilding = building;
+		selectedBuildingId = building.id;
 		panelOpen = true;
 	}
 
 	function handlePanelOpenChange(open: boolean) {
 		panelOpen = open;
 		if (!open) {
-			selectedBuilding = null;
+			selectedBuildingId = null;
 		}
 	}
 </script>

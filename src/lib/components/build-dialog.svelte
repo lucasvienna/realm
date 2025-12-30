@@ -11,15 +11,26 @@
 	import Mountain from "@lucide/svelte/icons/mountain";
 	import Coins from "@lucide/svelte/icons/coins";
 	import Clock from "@lucide/svelte/icons/clock";
-	import type { BuildingAvailability, BuildingLock } from "$lib/domain/building";
+	import type { BuildingAvailability, BuildingLock, ConstructionInfo } from "$lib/domain/building";
+	import type { ResourcesState } from "$lib/domain/resource";
 	import type { Component } from "svelte";
 	import { getAvailableBuildings } from "../../routes/(app)/game/data.remote";
 
 	interface Props {
+		resources: ResourcesState;
 		onbuild?: (building: BuildingAvailability) => void | Promise<void>;
 	}
 
-	let { onbuild }: Props = $props();
+	let { resources, onbuild }: Props = $props();
+
+	function canAfford(construction: ConstructionInfo): boolean {
+		return (
+			resources.food >= construction.food &&
+			resources.wood >= construction.wood &&
+			resources.stone >= construction.stone &&
+			resources.gold >= construction.gold
+		);
+	}
 	let open = $state(false);
 	let buildingInProgress = $state<string | null>(null);
 
@@ -113,20 +124,36 @@
 										<span>Build time: {formatDuration(bld.construction.time_seconds)}</span>
 									</div>
 									<p class="mb-2 text-sm font-medium">Build Cost:</p>
-									<div class="grid grid-cols-2 gap-2 text-sm text-muted-foreground">
-										<div class="flex items-center gap-2">
+									<div class="grid grid-cols-2 gap-2 text-sm">
+										<div
+											class="flex items-center gap-2"
+											class:text-emerald-600={resources.food >= bld.construction.food}
+											class:text-destructive={resources.food < bld.construction.food}
+										>
 											<Wheat class="size-4 text-amber-500" />
 											<span>Food: {bld.construction.food}</span>
 										</div>
-										<div class="flex items-center gap-2">
+										<div
+											class="flex items-center gap-2"
+											class:text-emerald-600={resources.wood >= bld.construction.wood}
+											class:text-destructive={resources.wood < bld.construction.wood}
+										>
 											<TreePine class="size-4 text-emerald-600" />
 											<span>Wood: {bld.construction.wood}</span>
 										</div>
-										<div class="flex items-center gap-2">
+										<div
+											class="flex items-center gap-2"
+											class:text-emerald-600={resources.stone >= bld.construction.stone}
+											class:text-destructive={resources.stone < bld.construction.stone}
+										>
 											<Mountain class="size-4 text-slate-500" />
 											<span>Stone: {bld.construction.stone}</span>
 										</div>
-										<div class="flex items-center gap-2">
+										<div
+											class="flex items-center gap-2"
+											class:text-emerald-600={resources.gold >= bld.construction.gold}
+											class:text-destructive={resources.gold < bld.construction.gold}
+										>
 											<Coins class="size-4 text-yellow-500" />
 											<span>Gold: {bld.construction.gold}</span>
 										</div>
@@ -154,9 +181,10 @@
 							</Card.Content>
 
 							<Card.Footer>
+								{@const affordable = canAfford(bld.construction)}
 								<Button
-									variant={bld.buildable ? "success" : "outline"}
-									disabled={!bld.buildable || buildingInProgress === bld.building.id}
+									variant={bld.buildable && affordable ? "success" : "outline"}
+									disabled={!bld.buildable || !affordable || buildingInProgress === bld.building.id}
 									class="w-full"
 									onclick={() => handleBuild(bld)}
 								>

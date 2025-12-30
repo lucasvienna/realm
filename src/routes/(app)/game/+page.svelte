@@ -17,7 +17,7 @@
 			<h1 class="text-xl font-bold tracking-tight">{player.name}'s Realm</h1>
 			<p class="text-xs text-muted-foreground capitalize">Faction: {player.faction}</p>
 		</div>
-		<BuildDialog />
+		<BuildDialog {resources} />
 	</div>
 
 	<!-- Building Viewport -->

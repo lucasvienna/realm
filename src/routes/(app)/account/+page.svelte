@@ -7,6 +7,7 @@
 	import type { PageServerData } from "./$types";
 
 	let { data }: { data: PageServerData } = $props();
+	let factions = $derived(data.factions);
 </script>
 
 <div class="min-h-svh bg-muted/40 p-4 md:p-8">
@@ -57,10 +58,9 @@
 								name="faction"
 								class="mb-3 w-full rounded-md border border-input bg-background px-3 py-2"
 							>
-								<option value="human">Humans</option>
-								<option value="orc">Orcs</option>
-								<option value="elf">Elves</option>
-								<option value="dwarf">Dwarves</option>
+								{#each factions as faction (faction.id)}
+									<option value={faction.id}>{faction.name}</option>
+								{/each}
 							</select>
 							<Button type="submit" variant="success" class="w-full">Join Faction</Button>
 						</form>

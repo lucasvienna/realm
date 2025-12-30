@@ -1,3 +1,5 @@
+import type { FactionResponse } from "$lib/domain/faction";
+
 import { getApi } from "$lib/server/api";
 import { requireLogin, type Player } from "$lib/server/auth";
 import { fail, isRedirect, redirect } from "@sveltejs/kit";
@@ -8,7 +10,9 @@ import type { Actions, PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async () => {
 	const user = requireLogin();
-	return { user };
+	const api = getApi();
+	const factions = await api.get("game/factions").json<Array<FactionResponse>>();
+	return { user, factions };
 };
 
 export const actions: Actions = {

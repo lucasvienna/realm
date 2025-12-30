@@ -20,7 +20,6 @@ export const actions: Actions = {
 			.json<BuildingState>()
 			.catch((e) => {
 				console.error("Construction failed:", e.message);
-				throw e;
 			});
 	},
 

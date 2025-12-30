@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { BuildingState } from "$lib/domain/building";
 	import { Progress } from "$lib/components/ui/progress";
+	import { calculateUpgradeProgress, isUpgradeComplete } from "$lib/utils/upgrade-progress";
 	import { DateTime } from "luxon";
 	import { onDestroy } from "svelte";
 
@@ -33,21 +34,13 @@
 		}
 	});
 
-	const upgradeProgress = $derived.by(() => {
-		if (!building.upgrade_finishes_at) return 0;
-
-		const finishTime = DateTime.fromISO(building.upgrade_finishes_at);
-		if (!finishTime.isValid) return 0;
-
-		const totalSeconds = parseInt(building.upgrade_seconds, 10);
-		if (totalSeconds <= 0) return 100;
-
-		const startTime = finishTime.minus({ seconds: totalSeconds });
-		const elapsed = now.diff(startTime, "seconds").seconds;
-		const progress = Math.min(100, Math.max(0, (elapsed / totalSeconds) * 100));
-
-		return progress;
-	});
+	const upgradeProgress = $derived(
+		calculateUpgradeProgress({
+			upgradeFinishesAt: building.upgrade_finishes_at,
+			upgradeSeconds: building.upgrade_seconds,
+			now,
+		}),
+	);
 
 	// Building type to color and shape mapping
 	type BuildingStyle = {
@@ -88,12 +81,7 @@
 
 	const isUpgrading = $derived(building.upgrade_finishes_at != null);
 	const isMaxLevel = $derived(building.level >= building.max_level);
-	const isReadyToConfirm = $derived.by(() => {
-		if (!building.upgrade_finishes_at) return false;
-		const finishTime = DateTime.fromISO(building.upgrade_finishes_at);
-		if (!finishTime.isValid) return false;
-		return now >= finishTime;
-	});
+	const isReadyToConfirm = $derived(isUpgradeComplete(building.upgrade_finishes_at, now));
 </script>
 
 <button

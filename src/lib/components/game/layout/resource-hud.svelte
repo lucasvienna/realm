@@ -21,7 +21,6 @@
 	let { resources, playerName, notificationCount = 0 }: Props = $props();
 
 	function formatNumber(n: number): string {
-		if (n >= 10000) return `${(n / 1000).toFixed(1)}k`;
 		if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
 		return n.toLocaleString();
 	}
@@ -92,7 +91,7 @@
 				</Button>
 			</form>
 
-			<Button variant="ghost" size="icon" class="relative">
+			<Button variant="ghost" size="icon" class="relative" aria-label="Notifications">
 				<Bell class="size-4" />
 				{#if notificationCount > 0}
 					<Badge

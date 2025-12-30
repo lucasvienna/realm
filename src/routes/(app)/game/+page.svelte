@@ -8,9 +8,11 @@
 	import Coins from "@lucide/svelte/icons/coins";
 	import Mountain from "@lucide/svelte/icons/mountain";
 	import TreePine from "@lucide/svelte/icons/tree-pine";
+	import AccountIcon from "@lucide/svelte/icons/user";
 	import Wheat from "@lucide/svelte/icons/wheat";
 	import { DateTime } from "luxon";
 	import type { PageProps } from "./$types";
+	import { resolve } from "$app/paths";
 	import type { BuildingState } from "$lib/domain/building";
 
 	let { data }: PageProps = $props();
@@ -42,11 +44,21 @@
 <div class="min-h-svh bg-muted/40 p-4 md:p-8">
 	<div class="mx-auto max-w-4xl space-y-6">
 		<!-- Page Header -->
-		<div>
-			<h1 class="text-3xl font-bold tracking-tight">{player.name}'s Realm</h1>
-			<p class="text-muted-foreground capitalize">Faction: {player.faction}</p>
-		</div>
-
+		<header class="flex flex-row items-center justify-between">
+			<div>
+				<h1 class="text-3xl font-bold tracking-tight">{player.name}'s Realm</h1>
+				<p class="text-muted-foreground capitalize">Faction: {player.faction}</p>
+			</div>
+			<div class="flex flex-row">
+				<Button href={resolve("/account")} variant="ghost">
+					<AccountIcon />
+					Account
+				</Button>
+				<form method="POST" action="/account?/logout" use:enhance>
+					<Button type="submit" variant="outline" class="w-24">Sign Out</Button>
+				</form>
+			</div>
+		</header>
 		<!-- Resources Card -->
 		<Card.Root>
 			<Card.Header>

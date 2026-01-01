@@ -54,7 +54,7 @@
 		"jsdom": "27.4.0",
 		"oxfmt": "0.21.0",
 		"oxlint": "1.36.0",
-		"oxlint-tsgolint": "0.10.0",
+		"oxlint-tsgolint": "0.10.1",
 		"prettier": "3.7.4",
 		"prettier-plugin-svelte": "3.4.1",
 		"prettier-plugin-tailwindcss": "0.7.2",

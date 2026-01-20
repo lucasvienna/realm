@@ -39,9 +39,9 @@
 				</Field.Group>
 				<Field.Separator class="mt-4 mb-2 uppercase">or</Field.Separator>
 				<div class="flex flex-col items-center gap-2">
-					<a href={resolve("/sign-in")} class="text-sm text-muted-foreground hover:underline"
-						>Back to Sign-in</a
-					>
+					<a href={resolve("/sign-in")} class="text-sm text-muted-foreground hover:underline">
+						Back to Sign-in
+					</a>
 				</div>
 			</form>
 		</Card.Content>

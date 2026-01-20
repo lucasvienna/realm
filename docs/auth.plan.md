@@ -50,12 +50,7 @@ API_INTERNAL_URL=http://localhost:8080
 import { env } from "$env/dynamic/private";
 import * as auth from "$lib/server/auth";
 
-const AUTH_ENDPOINTS = [
-	"/api/auth/",
-	"/api/login",
-	"/api/register",
-	"/api/logout",
-];
+const AUTH_ENDPOINTS = ["/api/auth/", "/api/login", "/api/register", "/api/logout"];
 
 function isAuthEndpoint(pathname: string): boolean {
 	return AUTH_ENDPOINTS.some((ep) => pathname.startsWith(ep));
@@ -72,10 +67,7 @@ export const handleFetch: HandleFetch = async ({ request, fetch, event }) => {
 	// Other /api/* requests: rewrite to internal backend URL
 	if (url.pathname.startsWith("/api/")) {
 		const internalPath = url.pathname.replace(/^\/api/, "");
-		const internalUrl = new URL(
-			internalPath,
-			env.API_INTERNAL_URL ?? "http://localhost:8080",
-		);
+		const internalUrl = new URL(internalPath, env.API_INTERNAL_URL ?? "http://localhost:8080");
 		internalUrl.search = url.search;
 
 		const headers = new Headers(request.headers);

@@ -1,6 +1,5 @@
-import type { BuildingAvailability, BuildingDefinition } from "$lib/domain/building";
-
 import { query } from "$app/server";
+import type { BuildingAvailability, BuildingDefinition } from "$lib/domain/building";
 import { getApi } from "$lib/server/api";
 import { requireLogin } from "$lib/server/auth";
 import { HTTPError } from "ky";

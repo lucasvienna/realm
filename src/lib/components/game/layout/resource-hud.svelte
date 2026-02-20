@@ -46,9 +46,9 @@
 	}
 
 	function formatRelativeTime(ts: string): string {
-		const now = Date.now();
+		const now2 = Date.now();
 		const date = new Date(ts).getTime();
-		const diffMs = now - date;
+		const diffMs = now2 - date;
 
 		const seconds = Math.floor(diffMs / 1000);
 		const minutes = Math.floor(seconds / 60);
@@ -62,9 +62,9 @@
 	}
 
 	function calculateOptimisticAcc(acc: number, accCap: number, rate: number): number {
-		const now = Date.now();
+		const now2 = Date.now();
 		const producedAt = new Date(resources.produced_at).getTime();
-		const hoursSinceProduced = (now - producedAt) / (1000 * 60 * 60);
+		const hoursSinceProduced = (now2 - producedAt) / (1000 * 60 * 60);
 		const optimistic = acc + rate * hoursSinceProduced;
 		return Math.max(0, Math.floor(Math.min(optimistic, accCap)));
 	}

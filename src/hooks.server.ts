@@ -1,8 +1,7 @@
-import type { Handle, HandleFetch } from "@sveltejs/kit";
-
 import { env } from "$env/dynamic/private";
 import { paraglideMiddleware } from "$lib/paraglide/server";
 import * as auth from "$lib/server/auth";
+import type { Handle, HandleFetch } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 
 const handleParaglide: Handle = ({ event, resolve }) =>

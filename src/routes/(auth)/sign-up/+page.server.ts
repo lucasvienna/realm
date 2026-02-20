@@ -1,6 +1,5 @@
-import type { Player } from "$lib/server/auth";
-
 import { getApi } from "$lib/server/api";
+import type { Player } from "$lib/server/auth";
 import { fail, isRedirect, redirect } from "@sveltejs/kit";
 import { HTTPError } from "ky";
 import invariant from "tiny-invariant";

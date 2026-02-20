@@ -1,6 +1,5 @@
 import type { BuildingState, GameBuilding } from "$lib/domain/building";
 import type { ResourcesState } from "$lib/domain/resource";
-
 import { getApi } from "$lib/server/api";
 import invariant from "tiny-invariant";
 

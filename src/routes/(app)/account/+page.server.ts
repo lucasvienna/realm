@@ -1,5 +1,4 @@
 import type { FactionResponse } from "$lib/domain/faction";
-
 import { getApi } from "$lib/server/api";
 import { requireLogin, type Player } from "$lib/server/auth";
 import { fail, isRedirect, redirect } from "@sveltejs/kit";

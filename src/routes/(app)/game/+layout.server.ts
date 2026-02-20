@@ -1,5 +1,4 @@
 import type { GameData } from "$lib/domain/game";
-
 import { getApi } from "$lib/server/api";
 import { requireLogin } from "$lib/server/auth";
 import { HTTPError } from "ky";

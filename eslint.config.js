@@ -36,5 +36,12 @@ export default defineConfig(
 			},
 		},
 	},
+	{
+		// Disabled due to crashes and numerous edge-case bugs in the rule implementation.
+		// https://github.com/sveltejs/eslint-plugin-svelte/issues/1481
+		rules: {
+			"svelte/no-navigation-without-resolve": "off",
+		},
+	},
 	...oxlint.buildFromOxlintConfigFile("./.oxlintrc.json"),
 );

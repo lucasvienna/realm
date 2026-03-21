@@ -17,6 +17,8 @@ Interactive button supporting multiple variants and sizes. Renders as `<a>` when
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts" module>
+	import { resolve } from "$app/paths";
+	import type { Pathname } from "$app/types";
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 	import { type VariantProps, tv } from "tailwind-variants";
@@ -60,6 +62,8 @@ Interactive button supporting multiple variants and sizes. Renders as `<a>` when
 		WithElementRef<HTMLAnchorAttributes> & {
 			variant?: ButtonVariant;
 			size?: ButtonSize;
+		} & {
+			href?: Pathname;
 		};
 </script>
 
@@ -78,12 +82,11 @@ Interactive button supporting multiple variants and sizes. Renders as `<a>` when
 </script>
 
 {#if href}
-	<!-- eslint-disable svelte/no-navigation-without-resolve -->
 	<a
 		bind:this={ref}
 		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
-		href={disabled ? undefined : href}
+		href={disabled ? undefined : resolve(href)}
 		aria-disabled={disabled}
 		role={disabled ? "link" : undefined}
 		tabindex={disabled ? -1 : undefined}
@@ -91,7 +94,6 @@ Interactive button supporting multiple variants and sizes. Renders as `<a>` when
 	>
 		{@render children?.()}
 	</a>
-	<!-- eslint-enable svelte/no-navigation-without-resolve -->
 {:else}
 	<button
 		bind:this={ref}

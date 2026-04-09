@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { resolve } from "$app/paths";
 	import { Button } from "$lib/components/ui/button";
 	import Award from "@lucide/svelte/icons/award";
 	import Globe from "@lucide/svelte/icons/globe";
@@ -41,7 +40,7 @@
 			</div>
 		</div>
 		<div class="mt-8">
-			<Button href={resolve("/sign-up")} size="lg" color="red">Start Your Empire</Button>
+			<Button href="/sign-up" size="lg" color="red">Start Your Empire</Button>
 		</div>
 	</div>
 </section>

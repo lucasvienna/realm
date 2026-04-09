@@ -24,8 +24,8 @@
 
 		<!-- Desktop buttons (hidden on mobile) -->
 		<div class="hidden items-center gap-2 md:flex">
-			<Button href={resolve("/sign-in")} variant="secondary">Log in</Button>
-			<Button href={resolve("/sign-up")} variant="destructive">Get started</Button>
+			<Button href="/sign-in" variant="secondary">Log in</Button>
+			<Button href="/sign-up" variant="destructive">Get started</Button>
 		</div>
 
 		<!-- Mobile Hamburger -> Sheet -->
@@ -39,7 +39,7 @@
 						</Button>
 					{/snippet}
 				</Sheet.Trigger>
-				<Sheet.Content side="right" class="w-[300px]">
+				<Sheet.Content side="right" class="w-75">
 					<Sheet.Header>
 						<Sheet.Title>Menu</Sheet.Title>
 					</Sheet.Header>
@@ -66,18 +66,10 @@
 							About
 						</a>
 						<div class="mt-4 flex flex-col gap-2">
-							<Button
-								href={resolve("/sign-in")}
-								variant="secondary"
-								onclick={() => (sheetOpen = false)}
-							>
+							<Button href="/sign-in" variant="secondary" onclick={() => (sheetOpen = false)}>
 								Log in
 							</Button>
-							<Button
-								href={resolve("/sign-up")}
-								variant="destructive"
-								onclick={() => (sheetOpen = false)}
-							>
+							<Button href="/sign-up" variant="destructive" onclick={() => (sheetOpen = false)}>
 								Get started
 							</Button>
 						</div>

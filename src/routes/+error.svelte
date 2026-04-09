@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import { resolve } from "$app/paths";
 	import { Button } from "$lib/components/ui/button";
 	import ErrorPage from "$lib/components/error-page.svelte";
 </script>
@@ -19,7 +18,7 @@
 					? "Sorry, we can't find that page. You'll find lots to explore on the home page."
 					: page.error?.message}
 			</p>
-			<Button href={resolve("/")} size="lg" color="red">Back to Homepage</Button>
+			<Button href="/" size="lg" color="red">Back to Homepage</Button>
 		{/snippet}
 	</ErrorPage>
 </main>

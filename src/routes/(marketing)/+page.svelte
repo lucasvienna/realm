@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { resolve } from "$app/paths";
 	import { Button } from "$lib/components/ui/button";
 
 	import ArrowRightOutline from "@lucide/svelte/icons/arrow-right";
@@ -19,11 +18,11 @@
 			game. Start with a small settlement and rise to become the most powerful ruler in the realm.
 		</p>
 		<div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-			<Button href={resolve("/game")} size="xl" color="red">
+			<Button href="/game" size="xl" color="red">
 				Play Now
 				<ArrowRightOutline class="-mr-1 ml-2 h-5 w-5" />
 			</Button>
-			<Button href={resolve("/about")} size="xl" color="light">Learn More</Button>
+			<Button href="/about" size="xl" color="light">Learn More</Button>
 		</div>
 	</div>
 </section>

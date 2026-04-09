@@ -89,9 +89,7 @@
 				</Card.Header>
 				<Card.Content class="space-y-3">
 					{#if data.user.faction !== "Neutral"}
-						<Button href={resolve("/game")} variant="default" class="w-full">
-							Enter the Realm
-						</Button>
+						<Button href="/game" variant="default" class="w-full">Enter the Realm</Button>
 					{/if}
 					<Separator />
 					<form method="post" action="?/logout" use:enhance>

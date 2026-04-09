@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
-	import { resolve } from "$app/paths";
 	import { Button } from "$lib/components/ui/button";
 	import { Badge } from "$lib/components/ui/badge";
 	import * as Popover from "$lib/components/ui/popover";
@@ -114,7 +113,7 @@
 </script>
 
 <header
-	class="fixed inset-x-0 top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+	class="fixed inset-x-0 top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60"
 >
 	<div class="flex h-14 items-center justify-between px-4">
 		<!-- Resources (scrollable on mobile) -->
@@ -201,7 +200,7 @@
 				<Settings class="size-4" />
 			</Button>
 
-			<Button variant="ghost" size="icon" href={resolve("/account")}>
+			<Button variant="ghost" size="icon" href="/account">
 				<User class="size-4" />
 				<span class="sr-only">{playerName}</span>
 			</Button>

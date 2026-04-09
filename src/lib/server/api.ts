@@ -1,6 +1,6 @@
 import { getRequestEvent } from "$app/server";
 import { API_PREFIX } from "$lib/constants";
-import ky, { type HTTPError, type KyInstance, type Options } from "ky";
+import ky, { isHTTPError, type BeforeErrorState, type KyInstance, type Options } from "ky";
 
 const defaultRetry = {
 	limit: 2,
@@ -12,23 +12,17 @@ const defaultRetry = {
 
 /**
  * Extracts error message from the response body and enhances the error.
- * Uses `response.clone()` to preserve the body for downstream consumers.
  */
-async function extractErrorMessage(error: HTTPError): Promise<HTTPError> {
-	const { response } = error;
-	if (response) {
-		try {
-			const body: unknown = await response.clone().json();
-			if (
-				typeof body === "object" &&
-				body !== null &&
-				"message" in body &&
-				typeof body.message === "string"
-			) {
-				error.message = `${body.message} (${response.status})`;
-			}
-		} catch {
-			// Response wasn't JSON, keep original message
+async function extractErrorMessage({ error }: BeforeErrorState): Promise<Error> {
+	if (isHTTPError(error)) {
+		const body: unknown = error.data;
+		if (
+			typeof body === "object" &&
+			body !== null &&
+			"message" in body &&
+			typeof body.message === "string"
+		) {
+			error.message = `${body.message} (${error.response.status})`;
 		}
 	}
 	return error;
@@ -61,7 +55,7 @@ export function getApi(options?: Options): KyInstance {
 
 	return ky.create({
 		fetch,
-		prefixUrl: `${url.origin}${API_PREFIX}`,
+		baseUrl: `${url.origin}${API_PREFIX}`,
 		timeout: 10_000,
 		...options,
 		retry:

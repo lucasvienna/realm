@@ -29,7 +29,7 @@ export async function validateSessionToken(
 ): Promise<AuthResponse> {
 	const api = ky.create({
 		fetch: event.fetch,
-		prefixUrl: `${event.url.origin}${API_PREFIX}`,
+		baseUrl: `${event.url.origin}${API_PREFIX}`,
 	});
 
 	const body = await api

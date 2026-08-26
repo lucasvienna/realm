@@ -199,7 +199,6 @@ user confirmation and NEVER if code was written to files in their project.
 
 - Use **shacn/svelte** for UI components (see `AGENTS.md:5`)
   - <https://raw.githubusercontent.com/themesberg/flowbite/refs/heads/main/llms.txt>
-- Node.js version: >=24.9.0 (specified in `package.json:7`)
 - Tool versions managed by `mise.toml`
 - Git status shows staged files: `.mcp.json`, `AGENTS.md`
 - Don't build for me, this is a learning project. Focus on giving me direction

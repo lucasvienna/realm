@@ -18,8 +18,8 @@ Container for grouped content with consistent styling.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
 	import { cn, type WithElementRef } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(null),
@@ -33,7 +33,7 @@ Container for grouped content with consistent styling.
 	bind:this={ref}
 	data-slot="card"
 	class={cn(
-		"flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm",
+		"bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
 		className,
 	)}
 	{...restProps}

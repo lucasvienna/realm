@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Component } from "svelte";
 	import type { IconProps } from "@lucide/svelte";
+	import type { Component } from "svelte";
 
 	interface Props {
 		name: string;
@@ -79,7 +79,7 @@
 	<!-- Current / Cap -->
 	<div class="flex items-baseline gap-1">
 		<span class="text-2xl font-semibold">{current}</span>
-		<span class="text-sm text-muted-foreground">/ {cap}</span>
+		<span class="text-muted-foreground text-sm">/ {cap}</span>
 	</div>
 
 	<!-- Progress Bar -->
@@ -92,9 +92,9 @@
 
 	<!-- Production Rate -->
 	<div class="space-y-0.5">
-		<p class="text-sm text-muted-foreground">
-			<span class="font-medium text-foreground">+{production}</span> /cycle
+		<p class="text-muted-foreground text-sm">
+			<span class="text-foreground font-medium">+{production}</span> /cycle
 		</p>
-		<p class="text-xs text-muted-foreground">acc {accumulator}/{accumulatorCap}</p>
+		<p class="text-muted-foreground text-xs">acc {accumulator}/{accumulatorCap}</p>
 	</div>
 </div>

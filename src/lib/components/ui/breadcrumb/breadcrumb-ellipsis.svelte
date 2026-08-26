@@ -6,9 +6,9 @@ Ellipsis indicator for collapsed breadcrumb items. Use inside `BreadcrumbItem`.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
+	import { cn, type WithElementRef, type WithoutChildren } from "$lib/utils.js";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { cn, type WithElementRef, type WithoutChildren } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),

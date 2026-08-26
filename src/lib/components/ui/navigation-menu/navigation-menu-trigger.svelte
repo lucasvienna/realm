@@ -15,8 +15,8 @@ Button that toggles a navigation menu dropdown. Includes chevron icon.
 </script>
 
 <script lang="ts">
-	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 
 	let {
 		ref = $bindable(null),

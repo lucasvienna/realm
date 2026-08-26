@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
-	import { Button } from "$lib/components/ui/button";
 	import { Badge } from "$lib/components/ui/badge";
+	import { Button } from "$lib/components/ui/button";
 	import * as Popover from "$lib/components/ui/popover";
 	import { Separator } from "$lib/components/ui/separator";
 	import type { ResourcesState } from "$lib/domain/resource";
-	import Wheat from "@lucide/svelte/icons/wheat";
-	import TreePine from "@lucide/svelte/icons/tree-pine";
-	import Mountain from "@lucide/svelte/icons/mountain";
-	import Coins from "@lucide/svelte/icons/coins";
 	import Bell from "@lucide/svelte/icons/bell";
+	import Coins from "@lucide/svelte/icons/coins";
+	import Mountain from "@lucide/svelte/icons/mountain";
 	import Settings from "@lucide/svelte/icons/settings";
+	import TreePine from "@lucide/svelte/icons/tree-pine";
 	import User from "@lucide/svelte/icons/user";
+	import Wheat from "@lucide/svelte/icons/wheat";
 
 	interface Props {
 		resources: ResourcesState;
@@ -113,7 +113,7 @@
 </script>
 
 <header
-	class="fixed inset-x-0 top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60"
+	class="bg-background/95 supports-backdrop-filter:bg-background/60 fixed inset-x-0 top-0 z-50 border-b backdrop-blur"
 >
 	<div class="flex h-14 items-center justify-between px-4">
 		<!-- Resources (scrollable on mobile) -->
@@ -121,17 +121,17 @@
 			{#each resourceItems as res (res.name)}
 				<Popover.Root>
 					<Popover.Trigger
-						class="flex shrink-0 cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-1 transition-colors hover:bg-muted/50"
+						class="hover:bg-muted/50 flex shrink-0 cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-1 transition-colors"
 					>
 						<res.icon class="size-4 {res.color}" />
 						<div class="flex flex-col leading-none">
 							<span class="text-sm font-semibold">
 								{formatNumber(res.current)}
-								<span class="text-xs font-normal text-muted-foreground">
+								<span class="text-muted-foreground text-xs font-normal">
 									/{formatNumber(res.cap)}
 								</span>
 							</span>
-							<span class="text-[10px] text-muted-foreground">+{res.rate}/h</span>
+							<span class="text-muted-foreground text-[10px]">+{res.rate}/h</span>
 						</div>
 					</Popover.Trigger>
 					<Popover.Content class="w-64" align="start">
@@ -156,7 +156,7 @@
 
 							<Separator />
 
-							<div class="space-y-1 text-xs text-muted-foreground">
+							<div class="text-muted-foreground space-y-1 text-xs">
 								<div>Last produced: {formatRelativeTime(resources.produced_at)}</div>
 								<div>Last collected: {formatRelativeTime(resources.collected_at)}</div>
 							</div>

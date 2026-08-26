@@ -30,12 +30,13 @@ The sheet panel that slides in from an edge. Includes close button.
 </script>
 
 <script lang="ts">
-	import { Dialog as SheetPrimitive } from "bits-ui";
-	import XIcon from "@lucide/svelte/icons/x";
-	import type { Snippet, ComponentProps } from "svelte";
-	import SheetPortal from "./sheet-portal.svelte";
-	import SheetOverlay from "./sheet-overlay.svelte";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import XIcon from "@lucide/svelte/icons/x";
+	import { Dialog as SheetPrimitive } from "bits-ui";
+	import type { Snippet, ComponentProps } from "svelte";
+
+	import SheetOverlay from "./sheet-overlay.svelte";
+	import SheetPortal from "./sheet-portal.svelte";
 
 	let {
 		ref = $bindable(null),
@@ -61,7 +62,7 @@ The sheet panel that slides in from an edge. Includes close button.
 	>
 		{@render children?.()}
 		<SheetPrimitive.Close
-			class="absolute end-4 top-4 rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none"
+			class="ring-offset-background focus-visible:ring-ring absolute end-4 top-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none"
 		>
 			<XIcon class="size-4" />
 			<span class="sr-only">Close</span>

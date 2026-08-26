@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
+	import MenuIcon from "@lucide/svelte/icons/menu";
+
 	import { Button } from "./ui/button";
 	import * as Sheet from "./ui/sheet";
-	import MenuIcon from "@lucide/svelte/icons/menu";
 
 	let sheetOpen = $state(false);
 </script>
 
-<header class="w-full border-b bg-background">
+<header class="bg-background w-full border-b">
 	<nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
 		<!-- Logo -->
 		<a href={resolve("/")} class="flex items-center gap-2">
@@ -17,9 +18,9 @@
 
 		<!-- Desktop nav links (hidden on mobile) -->
 		<div class="hidden items-center gap-6 md:flex">
-			<a href={resolve("/")} class="text-sm font-medium hover:text-primary">Home</a>
-			<a href={resolve("/game")} class="text-sm font-medium hover:text-primary">Game</a>
-			<a href={resolve("/about")} class="text-sm font-medium hover:text-primary">About</a>
+			<a href={resolve("/")} class="hover:text-primary text-sm font-medium">Home</a>
+			<a href={resolve("/game")} class="hover:text-primary text-sm font-medium">Game</a>
+			<a href={resolve("/about")} class="hover:text-primary text-sm font-medium">About</a>
 		</div>
 
 		<!-- Desktop buttons (hidden on mobile) -->
@@ -46,21 +47,21 @@
 					<nav class="mt-6 flex flex-col gap-4">
 						<a
 							href={resolve("/")}
-							class="text-lg font-medium hover:text-primary"
+							class="hover:text-primary text-lg font-medium"
 							onclick={() => (sheetOpen = false)}
 						>
 							Home
 						</a>
 						<a
 							href={resolve("/game")}
-							class="text-lg font-medium hover:text-primary"
+							class="hover:text-primary text-lg font-medium"
 							onclick={() => (sheetOpen = false)}
 						>
 							Game
 						</a>
 						<a
 							href={resolve("/about")}
-							class="text-lg font-medium hover:text-primary"
+							class="hover:text-primary text-lg font-medium"
 							onclick={() => (sheetOpen = false)}
 						>
 							About

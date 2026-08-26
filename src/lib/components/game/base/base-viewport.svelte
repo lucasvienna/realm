@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { BuildingState } from "$lib/domain/building";
 	import type { ResourcesState } from "$lib/domain/resource";
-	import BuildingSprite from "./building-sprite.svelte";
+
 	import BuildingPanel from "./building-panel.svelte";
+	import BuildingSprite from "./building-sprite.svelte";
 
 	interface Props {
 		buildings: Record<string, BuildingState[]>;
@@ -146,9 +147,9 @@
 	<div class="relative z-10 min-h-[400px] p-4 pt-8">
 		{#if allBuildings.length === 0}
 			<div class="flex h-64 items-center justify-center">
-				<div class="rounded-lg bg-background/80 px-6 py-4 text-center backdrop-blur-sm">
+				<div class="bg-background/80 rounded-lg px-6 py-4 text-center backdrop-blur-sm">
 					<p class="text-muted-foreground">No buildings yet.</p>
-					<p class="text-sm text-muted-foreground">
+					<p class="text-muted-foreground text-sm">
 						Use the Build button to construct your first building!
 					</p>
 				</div>

@@ -13,7 +13,7 @@
 	let submitting = $state(false);
 </script>
 
-<main class="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
+<main class="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
 	<Card.Root class="w-full max-w-lg">
 		<Card.Header>
 			<Card.Title>Create an account</Card.Title>

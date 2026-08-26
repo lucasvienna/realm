@@ -6,8 +6,8 @@ Non-clickable current page indicator. Use inside `BreadcrumbItem` for the final 
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
 	import { cn, type WithElementRef } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(null),
@@ -23,7 +23,7 @@ Non-clickable current page indicator. Use inside `BreadcrumbItem` for the final 
 	role="link"
 	aria-disabled="true"
 	aria-current="page"
-	class={cn("font-normal text-foreground", className)}
+	class={cn("text-foreground font-normal", className)}
 	{...restProps}
 >
 	{@render children?.()}

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { BuildingState } from "$lib/domain/building";
 	import { Progress } from "$lib/components/ui/progress";
+	import type { BuildingState } from "$lib/domain/building";
 	import { calculateUpgradeProgress, isUpgradeComplete } from "$lib/utils/upgrade-progress";
 	import { DateTime } from "luxon";
 	import { onDestroy } from "svelte";
@@ -219,7 +219,7 @@
 
 <button
 	type="button"
-	class="group relative flex flex-col items-center transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+	class="group focus-visible:ring-primary relative flex flex-col items-center transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
 	{onclick}
 >
 	<!-- Building SVG -->
@@ -686,7 +686,7 @@
 	</svg>
 
 	<!-- Building name -->
-	<span class="mt-1 text-xs font-medium text-foreground">{building.name}</span>
+	<span class="text-foreground mt-1 text-xs font-medium">{building.name}</span>
 
 	<!-- Upgrade progress bar -->
 	{#if isUpgrading}
@@ -700,6 +700,6 @@
 
 	<!-- Hover highlight -->
 	<div
-		class="absolute inset-0 rounded-lg bg-primary/10 opacity-0 transition-opacity group-hover:opacity-100"
+		class="bg-primary/10 absolute inset-0 rounded-lg opacity-0 transition-opacity group-hover:opacity-100"
 	></div>
 </button>

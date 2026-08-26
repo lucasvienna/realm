@@ -5,8 +5,9 @@ import { vi } from "vitest";
 Object.defineProperty(window, "matchMedia", {
 	writable: true,
 	enumerable: true,
-	value: vi.fn<(query: string) => MediaQueryList>().mockImplementation(
-		(query: string): MediaQueryList => ({
+	value: vi
+		.fn<(query: string) => MediaQueryList>()
+		.mockImplementation((query: string): MediaQueryList => ({
 			matches: false,
 			media: query,
 			onchange: null,
@@ -15,8 +16,7 @@ Object.defineProperty(window, "matchMedia", {
 			addEventListener: vi.fn<MediaQueryList["addEventListener"]>(),
 			removeEventListener: vi.fn<MediaQueryList["removeEventListener"]>(),
 			dispatchEvent: vi.fn<MediaQueryList["dispatchEvent"]>(),
-		}),
-	),
+		})),
 });
 
 // add more mocks here if you need them

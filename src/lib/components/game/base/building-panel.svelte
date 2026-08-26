@@ -1,22 +1,22 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
 	import { invalidateAll } from "$app/navigation";
-	import type { SubmitFunction } from "@sveltejs/kit";
+	import { Button } from "$lib/components/ui/button";
+	import * as Dialog from "$lib/components/ui/dialog";
+	import { Progress } from "$lib/components/ui/progress";
 	import type { BuildingState } from "$lib/domain/building";
 	import type { ResourcesState } from "$lib/domain/resource";
-	import { Button } from "$lib/components/ui/button";
-	import { Progress } from "$lib/components/ui/progress";
-	import * as Dialog from "$lib/components/ui/dialog";
 	import {
 		calculateUpgradeProgress,
 		formatRemainingTime,
 		isUpgradeComplete,
 	} from "$lib/utils/upgrade-progress";
-	import Wheat from "@lucide/svelte/icons/wheat";
-	import TreePine from "@lucide/svelte/icons/tree-pine";
-	import Mountain from "@lucide/svelte/icons/mountain";
-	import Coins from "@lucide/svelte/icons/coins";
 	import Clock from "@lucide/svelte/icons/clock";
+	import Coins from "@lucide/svelte/icons/coins";
+	import Mountain from "@lucide/svelte/icons/mountain";
+	import TreePine from "@lucide/svelte/icons/tree-pine";
+	import Wheat from "@lucide/svelte/icons/wheat";
+	import type { SubmitFunction } from "@sveltejs/kit";
 	import { DateTime } from "luxon";
 	import { onDestroy } from "svelte";
 
@@ -97,7 +97,7 @@
 			<Dialog.Header>
 				<Dialog.Title class="flex items-center gap-2">
 					{building.name}
-					<span class="text-sm font-normal text-muted-foreground">
+					<span class="text-muted-foreground text-sm font-normal">
 						Lv. {building.level}/{building.max_level}
 					</span>
 				</Dialog.Title>
@@ -157,7 +157,7 @@
 					<div>
 						<h4 class="mb-3 text-sm font-medium">Upgrade Progress</h4>
 						<Progress value={upgradeProgress} class="h-2" />
-						<p class="mt-2 flex items-center gap-1 text-sm text-muted-foreground">
+						<p class="text-muted-foreground mt-2 flex items-center gap-1 text-sm">
 							<Clock class="size-4" />
 							{remainingTime}
 						</p>
@@ -169,7 +169,7 @@
 					<div>
 						<h4 class="mb-3 text-sm font-medium">Upgrade to Level {building.level + 1}</h4>
 						<div class="grid grid-cols-2 gap-3">
-							<div class="flex items-center justify-between rounded-md bg-muted p-2">
+							<div class="bg-muted flex items-center justify-between rounded-md p-2">
 								<div class="flex items-center gap-2">
 									<Wheat class="size-4 text-amber-500" />
 									<span class="text-sm">Food</span>
@@ -181,7 +181,7 @@
 									{building.req_food ?? 0}
 								</span>
 							</div>
-							<div class="flex items-center justify-between rounded-md bg-muted p-2">
+							<div class="bg-muted flex items-center justify-between rounded-md p-2">
 								<div class="flex items-center gap-2">
 									<TreePine class="size-4 text-emerald-600" />
 									<span class="text-sm">Wood</span>
@@ -193,7 +193,7 @@
 									{building.req_wood ?? 0}
 								</span>
 							</div>
-							<div class="flex items-center justify-between rounded-md bg-muted p-2">
+							<div class="bg-muted flex items-center justify-between rounded-md p-2">
 								<div class="flex items-center gap-2">
 									<Mountain class="size-4 text-slate-400" />
 									<span class="text-sm">Stone</span>
@@ -205,7 +205,7 @@
 									{building.req_stone ?? 0}
 								</span>
 							</div>
-							<div class="flex items-center justify-between rounded-md bg-muted p-2">
+							<div class="bg-muted flex items-center justify-between rounded-md p-2">
 								<div class="flex items-center gap-2">
 									<Coins class="size-4 text-yellow-500" />
 									<span class="text-sm">Gold</span>

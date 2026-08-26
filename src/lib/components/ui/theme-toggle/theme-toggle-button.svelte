@@ -8,11 +8,10 @@ Simple button that toggles between light and dark modes on click.
 ```
 -->
 <script lang="ts">
-	import SunIcon from "@lucide/svelte/icons/sun";
-	import MoonIcon from "@lucide/svelte/icons/moon";
-
-	import { toggleMode } from "mode-watcher";
 	import { Button } from "$lib/components/ui/button";
+	import MoonIcon from "@lucide/svelte/icons/moon";
+	import SunIcon from "@lucide/svelte/icons/sun";
+	import { toggleMode } from "mode-watcher";
 </script>
 
 <Button onclick={toggleMode} variant="outline" size="icon">

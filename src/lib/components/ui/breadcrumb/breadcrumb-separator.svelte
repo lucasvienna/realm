@@ -6,8 +6,8 @@ Visual separator between breadcrumb items. Defaults to chevron icon; accepts cus
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import { cn, type WithElementRef } from "$lib/utils.js";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import type { HTMLLiAttributes } from "svelte/elements";
 
 	let {

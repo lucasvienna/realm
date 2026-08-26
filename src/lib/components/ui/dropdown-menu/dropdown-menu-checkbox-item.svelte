@@ -8,10 +8,10 @@ Toggleable menu item with checkbox. Use inside `DropdownMenuCheckboxGroup` or `D
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import MinusIcon from "@lucide/svelte/icons/minus";
-	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import type { Snippet } from "svelte";
 
 	let {
@@ -32,7 +32,7 @@ Toggleable menu item with checkbox. Use inside `DropdownMenuCheckboxGroup` or `D
 	bind:indeterminate
 	data-slot="dropdown-menu-checkbox-item"
 	class={cn(
-		"relative flex cursor-default items-center gap-2 rounded-sm py-1.5 ps-8 pe-2 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+		"focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm py-1.5 ps-8 pe-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 		className,
 	)}
 	{...restProps}

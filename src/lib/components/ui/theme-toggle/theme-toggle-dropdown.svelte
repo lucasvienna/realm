@@ -8,11 +8,10 @@ Dropdown menu for selecting theme: Light, Dark, or System preference.
 ```
 -->
 <script lang="ts">
-	import MoonIcon from "@lucide/svelte/icons/moon";
-	import SunIcon from "@lucide/svelte/icons/sun";
-
 	import { buttonVariants } from "$lib/components/ui/button";
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+	import MoonIcon from "@lucide/svelte/icons/moon";
+	import SunIcon from "@lucide/svelte/icons/sun";
 	import { resetMode, setMode } from "mode-watcher";
 </script>
 

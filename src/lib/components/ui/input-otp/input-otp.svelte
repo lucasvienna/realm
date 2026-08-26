@@ -17,8 +17,8 @@ One-time password/PIN code input with individual character slots.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import { PinInput as InputOTPPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
+	import { PinInput as InputOTPPrimitive } from "bits-ui";
 
 	let {
 		ref = $bindable(null),

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "$lib/components/ui/card";
 	import { Button } from "$lib/components/ui/button";
+	import * as Card from "$lib/components/ui/card";
 	import Swords from "@lucide/svelte/icons/swords";
 </script>
 
@@ -9,7 +9,7 @@
 		<div class="flex items-center justify-between">
 			<div>
 				<h1 class="text-2xl font-bold tracking-tight">Army</h1>
-				<p class="text-sm text-muted-foreground">Train and manage your forces</p>
+				<p class="text-muted-foreground text-sm">Train and manage your forces</p>
 			</div>
 			<Button variant="destructive">
 				<Swords class="mr-2 size-4" />
@@ -23,7 +23,7 @@
 				<Card.Description>Units available for combat</Card.Description>
 			</Card.Header>
 			<Card.Content>
-				<div class="py-8 text-center text-muted-foreground">
+				<div class="text-muted-foreground py-8 text-center">
 					<Swords class="mx-auto mb-4 size-12 opacity-50" />
 					<p>Army management coming soon</p>
 					<p class="text-sm">Train units, manage troops, and launch attacks</p>
@@ -37,7 +37,7 @@
 				<Card.Description>Units currently in training</Card.Description>
 			</Card.Header>
 			<Card.Content>
-				<p class="text-sm text-muted-foreground">No units in training</p>
+				<p class="text-muted-foreground text-sm">No units in training</p>
 			</Card.Content>
 		</Card.Root>
 	</div>

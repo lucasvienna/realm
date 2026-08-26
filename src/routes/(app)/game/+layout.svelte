@@ -1,5 +1,6 @@
 <script lang="ts">
 	import GameShell from "$lib/components/game/layout/game-shell.svelte";
+
 	import type { LayoutProps } from "./$types";
 
 	let { data, children }: LayoutProps = $props();

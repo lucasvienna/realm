@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { page } from "$app/stores";
 	import { resolve } from "$app/paths";
+	import { page } from "$app/stores";
 	import { Badge } from "$lib/components/ui/badge";
 	import Castle from "@lucide/svelte/icons/castle";
-	import Swords from "@lucide/svelte/icons/swords";
 	import FlaskConical from "@lucide/svelte/icons/flask-conical";
 	import Scroll from "@lucide/svelte/icons/scroll";
+	import Swords from "@lucide/svelte/icons/swords";
 	import Users from "@lucide/svelte/icons/users";
 	import type { Component } from "svelte";
 
@@ -62,7 +62,7 @@
 </script>
 
 <nav
-	class="fixed inset-x-0 bottom-0 z-50 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+	class="bg-background/95 supports-[backdrop-filter]:bg-background/60 fixed inset-x-0 bottom-0 z-50 border-t backdrop-blur"
 >
 	<div class="mx-auto flex h-16 max-w-lg items-center justify-around px-4">
 		{#each baseTabs as tab (tab.route)}
@@ -86,13 +86,13 @@
 						</Badge>
 					{/if}
 					{#if dot}
-						<span class="absolute -top-0.5 -right-0.5 size-2 rounded-full bg-destructive"></span>
+						<span class="bg-destructive absolute -top-0.5 -right-0.5 size-2 rounded-full"></span>
 					{/if}
 				</div>
 				<span class="font-medium">{tab.label}</span>
 				{#if active}
 					<span
-						class="absolute bottom-0 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full bg-primary"
+						class="bg-primary absolute bottom-0 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full"
 					></span>
 				{/if}
 			</a>

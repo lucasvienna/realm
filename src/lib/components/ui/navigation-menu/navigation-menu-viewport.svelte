@@ -6,8 +6,8 @@ Animated viewport container for navigation menu content. Auto-included by `Navig
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
+	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 
 	let {
 		ref = $bindable(null),
@@ -21,7 +21,7 @@ Animated viewport container for navigation menu content. Auto-included by `Navig
 		bind:ref
 		data-slot="navigation-menu-viewport"
 		class={cn(
-			"origin-top-center relative mt-1.5 h-[var(--bits-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 md:w-[var(--bits-navigation-menu-viewport-width)]",
+			"origin-top-center bg-popover text-popover-foreground data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 relative mt-1.5 h-[var(--bits-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border shadow md:w-[var(--bits-navigation-menu-viewport-width)]",
 			className,
 		)}
 		{...restProps}

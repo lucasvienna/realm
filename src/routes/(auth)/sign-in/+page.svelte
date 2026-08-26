@@ -10,6 +10,7 @@
 	import { Spinner } from "$lib/components/ui/spinner";
 	import AlertCircleIcon from "@lucide/svelte/icons/alert-circle";
 	import CrownIcon from "@lucide/svelte/icons/crown";
+
 	import type { PageProps } from "./$types";
 
 	let { form }: PageProps = $props();
@@ -17,7 +18,7 @@
 	let submitting = $state(false);
 </script>
 
-<main class="flex min-h-svh w-full flex-col items-center justify-center gap-6 bg-background p-6">
+<main class="bg-background flex min-h-svh w-full flex-col items-center justify-center gap-6 p-6">
 	<Card.Root class="w-full max-w-md">
 		<Card.Header>
 			<Card.Title>

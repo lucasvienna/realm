@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
 	import type { ResourcesState } from "$lib/domain/resource";
+	import type { Snippet } from "svelte";
+
 	import ResourceHud from "./resource-hud.svelte";
 	import TabBar from "./tab-bar.svelte";
 
@@ -21,7 +22,7 @@
 	}: Props = $props();
 </script>
 
-<div class="flex min-h-svh flex-col bg-muted/40">
+<div class="bg-muted/40 flex min-h-svh flex-col">
 	<!-- Top HUD -->
 	<ResourceHud {resources} {playerName} />
 

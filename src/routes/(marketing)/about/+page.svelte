@@ -3,8 +3,8 @@
 	import Award from "@lucide/svelte/icons/award";
 	import Globe from "@lucide/svelte/icons/globe";
 	import Landmark from "@lucide/svelte/icons/landmark";
-	import Users from "@lucide/svelte/icons/users";
 	import ShieldCheck from "@lucide/svelte/icons/shield-check";
+	import Users from "@lucide/svelte/icons/users";
 	import VectorSquare from "@lucide/svelte/icons/vector-square";
 </script>
 

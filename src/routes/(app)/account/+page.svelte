@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
-	import * as Card from "$lib/components/ui/card";
 	import { Button } from "$lib/components/ui/button";
+	import * as Card from "$lib/components/ui/card";
 	import { Separator } from "$lib/components/ui/separator";
+
 	import type { PageServerData } from "./$types";
 
 	let { data }: { data: PageServerData } = $props();
 	let factions = $derived(data.factions);
 </script>
 
-<div class="min-h-svh bg-muted/40 p-4 md:p-8">
+<div class="bg-muted/40 min-h-svh p-4 md:p-8">
 	<div class="mx-auto max-w-4xl space-y-6">
 		<!-- Page Header -->
 		<div>
@@ -27,13 +28,13 @@
 				<div class="flex items-center gap-4">
 					<!-- Avatar placeholder -->
 					<div
-						class="flex size-16 items-center justify-center rounded-full bg-primary text-2xl font-bold text-primary-foreground"
+						class="bg-primary text-primary-foreground flex size-16 items-center justify-center rounded-full text-2xl font-bold"
 					>
 						{data.user.name.charAt(0).toUpperCase()}
 					</div>
 					<div>
 						<p class="text-lg font-semibold">{data.user.name}</p>
-						<p class="font-mono text-sm text-muted-foreground">{data.user.id}</p>
+						<p class="text-muted-foreground font-mono text-sm">{data.user.id}</p>
 					</div>
 				</div>
 			</Card.Content>
@@ -49,13 +50,13 @@
 				</Card.Header>
 				<Card.Content>
 					{#if data.user.faction === "Neutral"}
-						<p class="mb-4 text-muted-foreground">
+						<p class="text-muted-foreground mb-4">
 							You haven't joined a faction yet. Choose your allegiance!
 						</p>
 						<form method="POST" action="?/join_faction" use:enhance>
 							<select
 								name="faction"
-								class="mb-3 w-full rounded-md border border-input bg-background px-3 py-2"
+								class="border-input bg-background mb-3 w-full rounded-md border px-3 py-2"
 							>
 								{#each factions as faction (faction.id)}
 									<option value={faction.id}>{faction.name}</option>
@@ -73,7 +74,7 @@
 							</div>
 							<div>
 								<p class="font-semibold capitalize">{data.user.faction}</p>
-								<p class="text-sm text-muted-foreground">Active member</p>
+								<p class="text-muted-foreground text-sm">Active member</p>
 							</div>
 						</div>
 					{/if}

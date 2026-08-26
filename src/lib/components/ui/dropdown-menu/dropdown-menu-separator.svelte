@@ -6,8 +6,8 @@ Visual divider between menu items. Use inside `DropdownMenuContent`.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
+	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 
 	let {
 		ref = $bindable(null),
@@ -19,6 +19,6 @@ Visual divider between menu items. Use inside `DropdownMenuContent`.
 <DropdownMenuPrimitive.Separator
 	bind:ref
 	data-slot="dropdown-menu-separator"
-	class={cn("-mx-1 my-1 h-px bg-border", className)}
+	class={cn("bg-border -mx-1 my-1 h-px", className)}
 	{...restProps}
 />

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import { Button } from "$lib/components/ui/button";
 	import ErrorPage from "$lib/components/error-page.svelte";
+	import { Button } from "$lib/components/ui/button";
 </script>
 
 <main>

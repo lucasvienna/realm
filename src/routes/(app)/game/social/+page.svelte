@@ -1,15 +1,15 @@
 <script lang="ts">
 	import * as Card from "$lib/components/ui/card";
 	import * as Tabs from "$lib/components/ui/tabs";
-	import Users from "@lucide/svelte/icons/users";
 	import Trophy from "@lucide/svelte/icons/trophy";
+	import Users from "@lucide/svelte/icons/users";
 </script>
 
 <div class="p-4 md:p-6">
 	<div class="mx-auto max-w-4xl space-y-6">
 		<div>
 			<h1 class="text-2xl font-bold tracking-tight">Social</h1>
-			<p class="text-sm text-muted-foreground">Guilds, leaderboards, and trading</p>
+			<p class="text-muted-foreground text-sm">Guilds, leaderboards, and trading</p>
 		</div>
 
 		<Tabs.Root value="guild">
@@ -23,7 +23,7 @@
 			<Tabs.Content value="guild" class="mt-4">
 				<Card.Root>
 					<Card.Content class="pt-6">
-						<div class="py-8 text-center text-muted-foreground">
+						<div class="text-muted-foreground py-8 text-center">
 							<Users class="mx-auto mb-4 size-12 opacity-50" />
 							<p>Guild system coming soon</p>
 							<p class="text-sm">Join or create a guild to collaborate with others</p>
@@ -35,7 +35,7 @@
 			<Tabs.Content value="leaderboard" class="mt-4">
 				<Card.Root>
 					<Card.Content class="pt-6">
-						<div class="py-8 text-center text-muted-foreground">
+						<div class="text-muted-foreground py-8 text-center">
 							<Trophy class="mx-auto mb-4 size-12 opacity-50" />
 							<p>Leaderboard coming soon</p>
 							<p class="text-sm">Compete with other players for top rankings</p>
@@ -47,7 +47,7 @@
 			<Tabs.Content value="trade" class="mt-4">
 				<Card.Root>
 					<Card.Content class="pt-6">
-						<p class="py-8 text-center text-sm text-muted-foreground">Trading coming soon</p>
+						<p class="text-muted-foreground py-8 text-center text-sm">Trading coming soon</p>
 					</Card.Content>
 				</Card.Root>
 			</Tabs.Content>
@@ -55,7 +55,7 @@
 			<Tabs.Content value="friends" class="mt-4">
 				<Card.Root>
 					<Card.Content class="pt-6">
-						<p class="py-8 text-center text-sm text-muted-foreground">Friends list coming soon</p>
+						<p class="text-muted-foreground py-8 text-center text-sm">Friends list coming soon</p>
 					</Card.Content>
 				</Card.Root>
 			</Tabs.Content>

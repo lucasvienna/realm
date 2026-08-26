@@ -13,8 +13,8 @@ Accessible label for form inputs. Associates with input via `for` attribute.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import { Label as LabelPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
+	import { Label as LabelPrimitive } from "bits-ui";
 
 	let {
 		ref = $bindable(null),

@@ -14,10 +14,10 @@ A checkbox input with support for checked, unchecked, and indeterminate states.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import { Checkbox as CheckboxPrimitive } from "bits-ui";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import MinusIcon from "@lucide/svelte/icons/minus";
-	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import { Checkbox as CheckboxPrimitive } from "bits-ui";
 
 	let {
 		ref = $bindable(null),
@@ -32,7 +32,7 @@ A checkbox input with support for checked, unchecked, and indeterminate states.
 	bind:ref
 	data-slot="checkbox"
 	class={cn(
-		"peer flex size-4 shrink-0 items-center justify-center rounded-lg border border-input shadow-xs transition-shadow outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:bg-input/30 dark:aria-invalid:ring-destructive/40 dark:data-[state=checked]:bg-primary",
+		"peer border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:bg-input/30 dark:aria-invalid:ring-destructive/40 dark:data-[state=checked]:bg-primary flex size-4 shrink-0 items-center justify-center rounded-lg border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
 		className,
 	)}
 	bind:checked

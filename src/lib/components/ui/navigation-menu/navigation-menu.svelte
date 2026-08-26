@@ -21,8 +21,9 @@ Root navigation menu with dropdown support. Includes viewport by default.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
+	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
+
 	import NavigationMenuViewport from "./navigation-menu-viewport.svelte";
 
 	let {

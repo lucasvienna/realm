@@ -6,8 +6,8 @@ Container list for navigation menu items. Use inside `NavigationMenu`.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
+	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 
 	let {
 		ref = $bindable(null),

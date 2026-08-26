@@ -8,9 +8,9 @@ Clickable link for navigable breadcrumb items. Use inside `BreadcrumbItem`.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import type { HTMLAnchorAttributes } from "svelte/elements";
-	import type { Snippet } from "svelte";
 	import { cn, type WithElementRef } from "$lib/utils.js";
+	import type { Snippet } from "svelte";
+	import type { HTMLAnchorAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(null),

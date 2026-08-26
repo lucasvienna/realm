@@ -1,6 +1,7 @@
 <script lang="ts">
 	import BuildDialog from "$lib/components/build-dialog.svelte";
 	import BaseViewport from "$lib/components/game/base/base-viewport.svelte";
+
 	import type { PageProps } from "./$types";
 
 	let { data }: PageProps = $props();
@@ -12,10 +13,10 @@
 
 <div class="flex h-full flex-col">
 	<!-- Header with title and build button -->
-	<div class="flex items-center justify-between border-b bg-background/50 px-4 py-3">
+	<div class="bg-background/50 flex items-center justify-between border-b px-4 py-3">
 		<div>
 			<h1 class="text-xl font-bold tracking-tight">{player.name}'s Realm</h1>
-			<p class="text-xs text-muted-foreground capitalize">Faction: {player.faction}</p>
+			<p class="text-muted-foreground text-xs capitalize">Faction: {player.faction}</p>
 		</div>
 		<BuildDialog {resources} />
 	</div>

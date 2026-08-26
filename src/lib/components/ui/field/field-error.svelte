@@ -8,8 +8,8 @@ Displays validation error messages. Accepts children or an errors array.
 -->
 <script lang="ts">
 	import { cn, type WithElementRef } from "$lib/utils.js";
-	import type { HTMLAttributes } from "svelte/elements";
 	import type { Snippet } from "svelte";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(null),
@@ -46,7 +46,7 @@ Displays validation error messages. Accepts children or an errors array.
 		bind:this={ref}
 		role="alert"
 		data-slot="field-error"
-		class={cn("text-sm font-normal text-destructive", className)}
+		class={cn("text-destructive text-sm font-normal", className)}
 		{...restProps}
 	>
 		{#if children}

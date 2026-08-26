@@ -8,7 +8,7 @@
 	import KeyRoundIcon from "@lucide/svelte/icons/key-round";
 </script>
 
-<main class="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-4">
+<main class="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-4">
 	<Card.Root class="w-full max-w-md">
 		<Card.Header>
 			<Card.Title>
@@ -39,7 +39,7 @@
 				</Field.Group>
 				<Field.Separator class="mt-4 mb-2 uppercase">or</Field.Separator>
 				<div class="flex flex-col items-center gap-2">
-					<a href={resolve("/sign-in")} class="text-sm text-muted-foreground hover:underline">
+					<a href={resolve("/sign-in")} class="text-muted-foreground text-sm hover:underline">
 						Back to Sign-in
 					</a>
 				</div>

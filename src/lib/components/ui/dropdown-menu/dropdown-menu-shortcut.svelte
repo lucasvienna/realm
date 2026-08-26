@@ -6,8 +6,8 @@ Keyboard shortcut hint displayed on the right of a menu item.
 @prop {HTMLElement} ref - Bindable reference to the underlying element
 -->
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
 	import { cn, type WithElementRef } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(null),
@@ -20,7 +20,7 @@ Keyboard shortcut hint displayed on the right of a menu item.
 <span
 	bind:this={ref}
 	data-slot="dropdown-menu-shortcut"
-	class={cn("ms-auto text-xs tracking-widest text-muted-foreground", className)}
+	class={cn("text-muted-foreground ms-auto text-xs tracking-widest", className)}
 	{...restProps}
 >
 	{@render children?.()}

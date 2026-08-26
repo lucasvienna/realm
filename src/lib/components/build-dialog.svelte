@@ -1,22 +1,23 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
 	import { invalidateAll } from "$app/navigation";
-	import type { SubmitFunction } from "@sveltejs/kit";
-	import * as Dialog from "$lib/components/ui/dialog";
-	import * as Card from "$lib/components/ui/card";
 	import { Button, buttonVariants } from "$lib/components/ui/button";
+	import * as Card from "$lib/components/ui/card";
+	import * as Dialog from "$lib/components/ui/dialog";
 	import { Separator } from "$lib/components/ui/separator";
-	import Ban from "@lucide/svelte/icons/ban";
-	import Building2 from "@lucide/svelte/icons/building-2";
-	import FlaskConical from "@lucide/svelte/icons/flask-conical";
-	import Wheat from "@lucide/svelte/icons/wheat";
-	import TreePine from "@lucide/svelte/icons/tree-pine";
-	import Mountain from "@lucide/svelte/icons/mountain";
-	import Coins from "@lucide/svelte/icons/coins";
-	import Clock from "@lucide/svelte/icons/clock";
 	import type { BuildingLock, ConstructionInfo } from "$lib/domain/building";
 	import type { ResourcesState } from "$lib/domain/resource";
+	import Ban from "@lucide/svelte/icons/ban";
+	import Building2 from "@lucide/svelte/icons/building-2";
+	import Clock from "@lucide/svelte/icons/clock";
+	import Coins from "@lucide/svelte/icons/coins";
+	import FlaskConical from "@lucide/svelte/icons/flask-conical";
+	import Mountain from "@lucide/svelte/icons/mountain";
+	import TreePine from "@lucide/svelte/icons/tree-pine";
+	import Wheat from "@lucide/svelte/icons/wheat";
+	import type { SubmitFunction } from "@sveltejs/kit";
 	import type { Component } from "svelte";
+
 	import {
 		getAllBuildingDefinitions,
 		getAvailableBuildings,
@@ -120,14 +121,14 @@
 							<Card.Header class="pb-2">
 								<div class="flex items-center justify-between">
 									<Card.Title class="text-lg">{bld.building.name}</Card.Title>
-									<span class="text-sm text-muted-foreground">
+									<span class="text-muted-foreground text-sm">
 										{bld.current_count}/{bld.max_count} built
 									</span>
 								</div>
 								<!-- Instance progress bar -->
-								<div class="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+								<div class="bg-muted h-1.5 w-full overflow-hidden rounded-full">
 									<div
-										class="h-full bg-primary transition-all"
+										class="bg-primary h-full transition-all"
 										style="width: {(bld.current_count / bld.max_count) * 100}%"
 									></div>
 								</div>
@@ -135,7 +136,7 @@
 
 							<Card.Content class="space-y-3">
 								<div>
-									<div class="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
+									<div class="text-muted-foreground mb-2 flex items-center gap-2 text-sm">
 										<Clock class="size-4 text-blue-500" />
 										<span>Build time: {formatDuration(bld.construction.time_seconds)}</span>
 									</div>
